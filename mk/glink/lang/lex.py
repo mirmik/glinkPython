@@ -25,12 +25,18 @@ tokens = (
     'MPROD', 'DPROD',
     'DIVMUL', 'PLUSMINUS',
     'DIVIDER',
+    'QUESTION',
 
     #KEYWORDS
     'DEFFUNC',
     'DEFINE',
     'MODULE',
+    'DOWNLEVEL',
+    'IF',
     'APPLICATION',
+    'VARIABLES',
+    'IMPORT',
+    'INPUT',
     'RETURN',
     'PRINT',
 )
@@ -81,6 +87,7 @@ t_EQUALS           = r'='
 t_OR               = r'\|'
 t_AMPERSAND        = r'\&'
 t_DIVMUL           = r'\/'
+t_QUESTION           = r'\?'
 t_PLUSMINUS        = r'\+|\-'
 
 def t_SUPERWORD(t):
@@ -96,6 +103,11 @@ def t_WORD(t):
     if t.value == 'define': t.type = "DEFINE"
     if t.value == 'print': t.type = "PRINT"
     if t.value == 'return': t.type = "RETURN"
+    if t.value == 'variables': t.type = "VARIABLES"
+    if t.value == 'input': t.type = "INPUT"
+    if t.value == 'downlevel': t.type = "DOWNLEVEL"
+    if t.value == 'import': t.type = "IMPORT"
+    if t.value == 'if': t.type = "IF"
     return t
 
 def t_POINT(t):

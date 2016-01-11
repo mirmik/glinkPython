@@ -83,9 +83,17 @@ def p_declare(p):
     """declare : WORD COLON expr"""
     p[0] = Node("declare", [p[1], p[3]])
 
+def p_if(p):
+    """if : IF expr QUESTION expr COLON expr"""
+    p[0] = Node("if", [p[2],p[4],p[6]])
+
 def p_divider(p):
     """divider : DIVIDER"""
     p[0] = "divider"
+
+def p_input(p):
+    """input : INPUT"""
+    p[0] = Node("input", [])
 
 def p_func(p):
     """func : WORD LPAREN args RPAREN"""
@@ -99,9 +107,9 @@ def p_metaexpr(p):
                 | application
                 | declare
                 | define
-                | print
-                | equal
-                | return"""
+                | downlevel
+                | if
+                | input"""
     p[0] = p[1]
 
 
@@ -134,7 +142,12 @@ def p_equal(p):
 
 def p_expr(p):
     """expr : exprnoalg
-            | alg0"""
+            | alg0
+            | print
+            | variables
+            | import
+            | equal
+            | return"""
     p[0] = p[1]
 
 
@@ -147,7 +160,7 @@ def p_exprnoalg(p):
 
 def p_return(p):
     """return : RETURN expr"""
-    p[0] = Node("return", [p[1]])
+    p[0] = Node("return", [p[2]])
 
 def p_term(p):
     """term : str
@@ -160,6 +173,13 @@ def p_int(p):
     """int : NUMBER"""
     p[0] = Node("int", [p[1]])
 
+def p_import(p):
+    """import : IMPORT str"""
+    p[0] = Node("import", [p[2]])
+
+def p_downlevel(p):
+    """downlevel : DOWNLEVEL expr"""
+    p[0] = Node("downlevel", [p[2]])
 
 def p_float(p):
     """float : FLOAT"""
@@ -173,6 +193,9 @@ def p_var(p):
     """var : WORD"""
     p[0] = Node("var", [p[1]])
 
+def p_variables(p):
+    """variables : VARIABLES expr"""
+    p[0] = Node("variables", [p[2]])
 
 def parse_error(str,p):
     print(red(str), p)

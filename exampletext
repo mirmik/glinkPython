@@ -1,24 +1,5 @@
 
 
+downlevel import "./ex"
 
-
-deffunc f(a, b):
-{
-    a + 3 * b
-}
-
-print f(2,5)
-
-
-
-g = 3
-f = 89
-
-{
-    g = 4
-
-    print g
-}
-
-
-print g
+print f(8)
