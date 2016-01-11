@@ -35,6 +35,7 @@ tokens = (
     'IF',
     'APPLICATION',
     'VARIABLES',
+    'PYTHON',
     'IMPORT',
     'INPUT',
     'RETURN',
@@ -107,6 +108,7 @@ def t_WORD(t):
     if t.value == 'input': t.type = "INPUT"
     if t.value == 'downlevel': t.type = "DOWNLEVEL"
     if t.value == 'import': t.type = "IMPORT"
+    if t.value == 'python': t.type = "PYTHON"
     if t.value == 'if': t.type = "IF"
     return t
 

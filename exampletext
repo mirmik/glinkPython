@@ -1,5 +1,8 @@
 
+g = 8
 
 downlevel import "./ex"
 
-print f(8)
+a = python "a"
+
+print a

@@ -2,16 +2,16 @@ Created by PLY version 3.7 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
+    MPROD
     HEXNUMBER
     SEMI
+    OR
     BINNUMBER
-    MPROD
+    DOUBLECOLON
     POINT
     AMPERSAND
     WRONGSTRING
-    DOUBLECOLON
     SUPERWORD
-    OR
 
 Grammar
 
@@ -53,33 +53,35 @@ Rule 34    expr -> exprnoalg
 Rule 35    expr -> alg0
 Rule 36    expr -> print
 Rule 37    expr -> variables
-Rule 38    expr -> import
-Rule 39    expr -> equal
-Rule 40    expr -> return
-Rule 41    exprnoalg -> term
-Rule 42    exprnoalg -> func
-Rule 43    exprnoalg -> block
-Rule 44    exprnoalg -> list
-Rule 45    return -> RETURN expr
-Rule 46    term -> str
-Rule 47    term -> float
-Rule 48    term -> int
-Rule 49    term -> var
-Rule 50    int -> NUMBER
-Rule 51    import -> IMPORT str
-Rule 52    downlevel -> DOWNLEVEL expr
-Rule 53    float -> FLOAT
-Rule 54    str -> STRING
-Rule 55    var -> WORD
-Rule 56    variables -> VARIABLES expr
-Rule 57    alg0 -> alg1
-Rule 58    alg0 -> alg0 PLUSMINUS alg1
-Rule 59    alg0 -> PLUSMINUS alg1
-Rule 60    alg1 -> alg2
-Rule 61    alg1 -> alg1 DIVMUL alg2
-Rule 62    alg2 -> alg3
-Rule 63    alg2 -> alg2 DPROD alg3
-Rule 64    alg3 -> exprnoalg
+Rule 38    expr -> python
+Rule 39    expr -> import
+Rule 40    expr -> equal
+Rule 41    expr -> return
+Rule 42    exprnoalg -> term
+Rule 43    exprnoalg -> func
+Rule 44    exprnoalg -> block
+Rule 45    exprnoalg -> list
+Rule 46    return -> RETURN expr
+Rule 47    term -> str
+Rule 48    term -> float
+Rule 49    term -> int
+Rule 50    term -> var
+Rule 51    int -> NUMBER
+Rule 52    python -> PYTHON str
+Rule 53    import -> IMPORT str
+Rule 54    downlevel -> DOWNLEVEL expr
+Rule 55    float -> FLOAT
+Rule 56    str -> STRING
+Rule 57    var -> WORD
+Rule 58    variables -> VARIABLES expr
+Rule 59    alg0 -> alg1
+Rule 60    alg0 -> alg0 PLUSMINUS alg1
+Rule 61    alg0 -> PLUSMINUS alg1
+Rule 62    alg1 -> alg2
+Rule 63    alg1 -> alg1 DIVMUL alg2
+Rule 64    alg2 -> alg3
+Rule 65    alg2 -> alg2 DPROD alg3
+Rule 66    alg3 -> exprnoalg
 
 Terminals, with rules where they appear
 
@@ -91,48 +93,49 @@ COMMA                : 32
 DEFFUNC              : 11
 DEFINE               : 13
 DIVIDER              : 16
-DIVMUL               : 61
+DIVMUL               : 63
 DOUBLECOLON          : 
-DOWNLEVEL            : 52
-DPROD                : 63
+DOWNLEVEL            : 54
+DPROD                : 65
 EQUALS               : 33
-FLOAT                : 53
+FLOAT                : 55
 HEXNUMBER            : 
 IF                   : 15
-IMPORT               : 51
+IMPORT               : 53
 INPUT                : 17
 LBRACE               : 3
 LBRACKET             : 28
 LPAREN               : 18
 MODULE               : 10
 MPROD                : 
-NUMBER               : 50
+NUMBER               : 51
 OR                   : 
-PLUSMINUS            : 58 59
+PLUSMINUS            : 60 61
 POINT                : 
 PRINT                : 9
+PYTHON               : 52
 QUESTION             : 15
 RBRACE               : 3
 RBRACKET             : 28
-RETURN               : 45
+RETURN               : 46
 RPAREN               : 18
 SEMI                 : 
-STRING               : 54
+STRING               : 56
 SUPERWORD            : 
-VARIABLES            : 56
-WORD                 : 10 12 13 14 18 33 55
+VARIABLES            : 58
+WORD                 : 10 12 13 14 18 33 57
 WRONGSTRING          : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-alg0                 : 35 58
-alg1                 : 57 58 59 61
-alg2                 : 60 61 63
-alg3                 : 62 63
+alg0                 : 35 60
+alg1                 : 59 60 61 63
+alg2                 : 62 63 65
+alg3                 : 64 65
 application          : 22
 args                 : 18
-block                : 1 2 43
+block                : 1 2 44
 comms                : 28 30 32
 dblock               : 10 11 12
 declare              : 23
@@ -140,24 +143,25 @@ deffunc              : 20
 define               : 24
 divider              : 2 6 7 8
 downlevel            : 25
-equal                : 39
-expr                 : 9 13 14 15 15 15 19 31 32 33 45 52 56
-exprnoalg            : 34 64
-float                : 47
-func                 : 11 42
+equal                : 40
+expr                 : 9 13 14 15 15 15 19 31 32 33 46 54 58
+exprnoalg            : 34 66
+float                : 48
+func                 : 11 43
 if                   : 26
-import               : 38
+import               : 39
 inblock              : 3 6 7 8 0
 input                : 27
-int                  : 48
-list                 : 44
+int                  : 49
+list                 : 45
 metaexpr             : 5 6
 module               : 21
 print                : 36
-return               : 40
-str                  : 46 51
-term                 : 41
-var                  : 49
+python               : 38
+return               : 41
+str                  : 47 52 53
+term                 : 42
+var                  : 50
 variables            : 37
 
 Parsing method: LALR
@@ -184,345 +188,378 @@ state 0
     (35) expr -> . alg0
     (36) expr -> . print
     (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
     (11) deffunc -> . DEFFUNC func COLON dblock
     (10) module -> . MODULE WORD COLON dblock
     (12) application -> . APPLICATION WORD COLON dblock
     (14) declare -> . WORD COLON expr
     (13) define -> . DEFINE WORD expr
-    (52) downlevel -> . DOWNLEVEL expr
+    (54) downlevel -> . DOWNLEVEL expr
     (15) if -> . IF expr QUESTION expr COLON expr
     (17) input -> . INPUT
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
     (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
     (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
     (18) func -> . WORD LPAREN args RPAREN
     (3) block -> . LBRACE inblock RBRACE
     (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
 
   ! shift/reduce conflict for DIVIDER resolved as shift
     $end            reduce using rule 4 (inblock -> .)
-    DIVIDER         shift and go to state 19
-    DEFFUNC         shift and go to state 40
-    MODULE          shift and go to state 9
-    APPLICATION     shift and go to state 42
-    WORD            shift and go to state 36
-    DEFINE          shift and go to state 39
-    DOWNLEVEL       shift and go to state 18
-    IF              shift and go to state 17
-    INPUT           shift and go to state 34
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    DIVIDER         shift and go to state 44
+    DEFFUNC         shift and go to state 36
+    MODULE          shift and go to state 17
+    APPLICATION     shift and go to state 9
+    WORD            shift and go to state 7
+    DEFINE          shift and go to state 15
+    DOWNLEVEL       shift and go to state 2
+    IF              shift and go to state 50
+    INPUT           shift and go to state 28
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
   ! DIVIDER         [ reduce using rule 4 (inblock -> .) ]
 
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    module                         shift and go to state 29
-    downlevel                      shift and go to state 49
-    application                    shift and go to state 2
-    alg0                           shift and go to state 3
-    str                            shift and go to state 11
-    inblock                        shift and go to state 5
-    alg1                           shift and go to state 41
-    define                         shift and go to state 35
-    input                          shift and go to state 7
-    expr                           shift and go to state 37
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    deffunc                        shift and go to state 31
-    divider                        shift and go to state 12
-    exprnoalg                      shift and go to state 13
-    declare                        shift and go to state 14
-    equal                          shift and go to state 43
-    block                          shift and go to state 30
-    int                            shift and go to state 15
-    metaexpr                       shift and go to state 45
+    term                           shift and go to state 1
+    inblock                        shift and go to state 3
+    alg0                           shift and go to state 4
+    downlevel                      shift and go to state 43
+    divider                        shift and go to state 13
+    module                         shift and go to state 8
+    equal                          shift and go to state 35
+    if                             shift and go to state 10
+    metaexpr                       shift and go to state 11
+    func                           shift and go to state 26
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    application                    shift and go to state 41
+    input                          shift and go to state 16
+    define                         shift and go to state 32
+    return                         shift and go to state 18
+    expr                           shift and go to state 19
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
+    declare                        shift and go to state 38
+    deffunc                        shift and go to state 22
     var                            shift and go to state 48
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
-    if                             shift and go to state 23
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
     print                          shift and go to state 25
-    alg3                           shift and go to state 26
+    alg2                           shift and go to state 31
+    float                          shift and go to state 27
+    block                          shift and go to state 6
+    int                            shift and go to state 29
 
 state 1
 
-    (53) float -> FLOAT .
+    (42) exprnoalg -> term .
 
-    DIVIDER         reduce using rule 53 (float -> FLOAT .)
-    $end            reduce using rule 53 (float -> FLOAT .)
-    RBRACE          reduce using rule 53 (float -> FLOAT .)
-    QUESTION        reduce using rule 53 (float -> FLOAT .)
-    RBRACKET        reduce using rule 53 (float -> FLOAT .)
-    COMMA           reduce using rule 53 (float -> FLOAT .)
-    RPAREN          reduce using rule 53 (float -> FLOAT .)
-    COLON           reduce using rule 53 (float -> FLOAT .)
-    DPROD           reduce using rule 53 (float -> FLOAT .)
-    DIVMUL          reduce using rule 53 (float -> FLOAT .)
-    PLUSMINUS       reduce using rule 53 (float -> FLOAT .)
+    DPROD           reduce using rule 42 (exprnoalg -> term .)
+    DIVMUL          reduce using rule 42 (exprnoalg -> term .)
+    PLUSMINUS       reduce using rule 42 (exprnoalg -> term .)
+    DIVIDER         reduce using rule 42 (exprnoalg -> term .)
+    $end            reduce using rule 42 (exprnoalg -> term .)
+    RBRACE          reduce using rule 42 (exprnoalg -> term .)
+    RBRACKET        reduce using rule 42 (exprnoalg -> term .)
+    COMMA           reduce using rule 42 (exprnoalg -> term .)
+    QUESTION        reduce using rule 42 (exprnoalg -> term .)
+    RPAREN          reduce using rule 42 (exprnoalg -> term .)
+    COLON           reduce using rule 42 (exprnoalg -> term .)
 
 
 state 2
 
-    (22) metaexpr -> application .
+    (54) downlevel -> DOWNLEVEL . expr
+    (34) expr -> . exprnoalg
+    (35) expr -> . alg0
+    (36) expr -> . print
+    (37) expr -> . variables
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
+    (9) print -> . PRINT expr
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
+    (33) equal -> . WORD EQUALS expr
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
+    (18) func -> . WORD LPAREN args RPAREN
+    (3) block -> . LBRACE inblock RBRACE
+    (28) list -> . LBRACKET comms RBRACKET
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
 
-    DIVIDER         reduce using rule 22 (metaexpr -> application .)
-    $end            reduce using rule 22 (metaexpr -> application .)
-    RBRACE          reduce using rule 22 (metaexpr -> application .)
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    WORD            shift and go to state 52
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
+    term                           shift and go to state 1
+    alg2                           shift and go to state 31
+    alg0                           shift and go to state 4
+    equal                          shift and go to state 35
+    block                          shift and go to state 6
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    return                         shift and go to state 18
+    expr                           shift and go to state 53
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
+    var                            shift and go to state 48
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
+    print                          shift and go to state 25
+    func                           shift and go to state 26
+    float                          shift and go to state 27
+    int                            shift and go to state 29
 
 state 3
-
-    (35) expr -> alg0 .
-    (58) alg0 -> alg0 . PLUSMINUS alg1
-
-    DIVIDER         reduce using rule 35 (expr -> alg0 .)
-    $end            reduce using rule 35 (expr -> alg0 .)
-    RBRACE          reduce using rule 35 (expr -> alg0 .)
-    QUESTION        reduce using rule 35 (expr -> alg0 .)
-    RBRACKET        reduce using rule 35 (expr -> alg0 .)
-    COMMA           reduce using rule 35 (expr -> alg0 .)
-    RPAREN          reduce using rule 35 (expr -> alg0 .)
-    COLON           reduce using rule 35 (expr -> alg0 .)
-    PLUSMINUS       shift and go to state 50
-
-
-state 4
-
-    (51) import -> IMPORT . str
-    (54) str -> . STRING
-
-    STRING          shift and go to state 16
-
-    str                            shift and go to state 51
-
-state 5
 
     (0) S' -> inblock .
     (6) inblock -> inblock . divider metaexpr
     (8) inblock -> inblock . divider
     (16) divider -> . DIVIDER
 
-    DIVIDER         shift and go to state 19
+    DIVIDER         shift and go to state 44
 
-    divider                        shift and go to state 52
+    divider                        shift and go to state 54
 
-state 6
+state 4
 
-    (3) block -> LBRACE . inblock RBRACE
-    (4) inblock -> .
-    (5) inblock -> . metaexpr
-    (6) inblock -> . inblock divider metaexpr
-    (7) inblock -> . divider inblock
-    (8) inblock -> . inblock divider
-    (19) metaexpr -> . expr
-    (20) metaexpr -> . deffunc
-    (21) metaexpr -> . module
-    (22) metaexpr -> . application
-    (23) metaexpr -> . declare
-    (24) metaexpr -> . define
-    (25) metaexpr -> . downlevel
-    (26) metaexpr -> . if
-    (27) metaexpr -> . input
-    (16) divider -> . DIVIDER
+    (35) expr -> alg0 .
+    (60) alg0 -> alg0 . PLUSMINUS alg1
+
+    DIVIDER         reduce using rule 35 (expr -> alg0 .)
+    $end            reduce using rule 35 (expr -> alg0 .)
+    RBRACE          reduce using rule 35 (expr -> alg0 .)
+    RBRACKET        reduce using rule 35 (expr -> alg0 .)
+    COMMA           reduce using rule 35 (expr -> alg0 .)
+    QUESTION        reduce using rule 35 (expr -> alg0 .)
+    RPAREN          reduce using rule 35 (expr -> alg0 .)
+    COLON           reduce using rule 35 (expr -> alg0 .)
+    PLUSMINUS       shift and go to state 55
+
+
+state 5
+
+    (9) print -> PRINT . expr
     (34) expr -> . exprnoalg
     (35) expr -> . alg0
     (36) expr -> . print
     (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (11) deffunc -> . DEFFUNC func COLON dblock
-    (10) module -> . MODULE WORD COLON dblock
-    (12) application -> . APPLICATION WORD COLON dblock
-    (14) declare -> . WORD COLON expr
-    (13) define -> . DEFINE WORD expr
-    (52) downlevel -> . DOWNLEVEL expr
-    (15) if -> . IF expr QUESTION expr COLON expr
-    (17) input -> . INPUT
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
     (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
     (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
     (18) func -> . WORD LPAREN args RPAREN
     (3) block -> . LBRACE inblock RBRACE
     (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
 
-  ! shift/reduce conflict for DIVIDER resolved as shift
-    RBRACE          reduce using rule 4 (inblock -> .)
-    DIVIDER         shift and go to state 19
-    DEFFUNC         shift and go to state 40
-    MODULE          shift and go to state 9
-    APPLICATION     shift and go to state 42
-    WORD            shift and go to state 36
-    DEFINE          shift and go to state 39
-    DOWNLEVEL       shift and go to state 18
-    IF              shift and go to state 17
-    INPUT           shift and go to state 34
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    WORD            shift and go to state 52
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
-  ! DIVIDER         [ reduce using rule 4 (inblock -> .) ]
-
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    module                         shift and go to state 29
-    downlevel                      shift and go to state 49
-    application                    shift and go to state 2
-    alg0                           shift and go to state 3
-    str                            shift and go to state 11
-    inblock                        shift and go to state 53
-    alg1                           shift and go to state 41
-    define                         shift and go to state 35
-    input                          shift and go to state 7
-    expr                           shift and go to state 37
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    deffunc                        shift and go to state 31
-    divider                        shift and go to state 12
-    exprnoalg                      shift and go to state 13
-    declare                        shift and go to state 14
-    equal                          shift and go to state 43
-    block                          shift and go to state 30
-    int                            shift and go to state 15
-    metaexpr                       shift and go to state 45
+    term                           shift and go to state 1
+    alg2                           shift and go to state 31
+    alg0                           shift and go to state 4
+    equal                          shift and go to state 35
+    block                          shift and go to state 6
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    return                         shift and go to state 18
+    expr                           shift and go to state 56
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
     var                            shift and go to state 48
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
-    if                             shift and go to state 23
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
     print                          shift and go to state 25
-    alg3                           shift and go to state 26
+    func                           shift and go to state 26
+    float                          shift and go to state 27
+    int                            shift and go to state 29
+
+state 6
+
+    (44) exprnoalg -> block .
+
+    DPROD           reduce using rule 44 (exprnoalg -> block .)
+    DIVMUL          reduce using rule 44 (exprnoalg -> block .)
+    PLUSMINUS       reduce using rule 44 (exprnoalg -> block .)
+    DIVIDER         reduce using rule 44 (exprnoalg -> block .)
+    $end            reduce using rule 44 (exprnoalg -> block .)
+    RBRACE          reduce using rule 44 (exprnoalg -> block .)
+    RBRACKET        reduce using rule 44 (exprnoalg -> block .)
+    COMMA           reduce using rule 44 (exprnoalg -> block .)
+    QUESTION        reduce using rule 44 (exprnoalg -> block .)
+    RPAREN          reduce using rule 44 (exprnoalg -> block .)
+    COLON           reduce using rule 44 (exprnoalg -> block .)
+
 
 state 7
 
-    (27) metaexpr -> input .
+    (14) declare -> WORD . COLON expr
+    (33) equal -> WORD . EQUALS expr
+    (18) func -> WORD . LPAREN args RPAREN
+    (57) var -> WORD .
 
-    DIVIDER         reduce using rule 27 (metaexpr -> input .)
-    $end            reduce using rule 27 (metaexpr -> input .)
-    RBRACE          reduce using rule 27 (metaexpr -> input .)
+    COLON           shift and go to state 59
+    EQUALS          shift and go to state 57
+    LPAREN          shift and go to state 58
+    DIVIDER         reduce using rule 57 (var -> WORD .)
+    $end            reduce using rule 57 (var -> WORD .)
+    DPROD           reduce using rule 57 (var -> WORD .)
+    DIVMUL          reduce using rule 57 (var -> WORD .)
+    PLUSMINUS       reduce using rule 57 (var -> WORD .)
+    RBRACE          reduce using rule 57 (var -> WORD .)
 
 
 state 8
 
-    (38) expr -> import .
+    (21) metaexpr -> module .
 
-    DIVIDER         reduce using rule 38 (expr -> import .)
-    $end            reduce using rule 38 (expr -> import .)
-    RBRACE          reduce using rule 38 (expr -> import .)
-    QUESTION        reduce using rule 38 (expr -> import .)
-    RBRACKET        reduce using rule 38 (expr -> import .)
-    COMMA           reduce using rule 38 (expr -> import .)
-    RPAREN          reduce using rule 38 (expr -> import .)
-    COLON           reduce using rule 38 (expr -> import .)
+    RBRACE          reduce using rule 21 (metaexpr -> module .)
+    DIVIDER         reduce using rule 21 (metaexpr -> module .)
+    $end            reduce using rule 21 (metaexpr -> module .)
 
 
 state 9
 
-    (10) module -> MODULE . WORD COLON dblock
+    (12) application -> APPLICATION . WORD COLON dblock
 
-    WORD            shift and go to state 54
+    WORD            shift and go to state 60
 
 
 state 10
 
-    (41) exprnoalg -> term .
+    (26) metaexpr -> if .
 
-    DPROD           reduce using rule 41 (exprnoalg -> term .)
-    DIVMUL          reduce using rule 41 (exprnoalg -> term .)
-    PLUSMINUS       reduce using rule 41 (exprnoalg -> term .)
-    DIVIDER         reduce using rule 41 (exprnoalg -> term .)
-    $end            reduce using rule 41 (exprnoalg -> term .)
-    RBRACE          reduce using rule 41 (exprnoalg -> term .)
-    QUESTION        reduce using rule 41 (exprnoalg -> term .)
-    RBRACKET        reduce using rule 41 (exprnoalg -> term .)
-    COMMA           reduce using rule 41 (exprnoalg -> term .)
-    RPAREN          reduce using rule 41 (exprnoalg -> term .)
-    COLON           reduce using rule 41 (exprnoalg -> term .)
+    RBRACE          reduce using rule 26 (metaexpr -> if .)
+    DIVIDER         reduce using rule 26 (metaexpr -> if .)
+    $end            reduce using rule 26 (metaexpr -> if .)
 
 
 state 11
 
-    (46) term -> str .
+    (5) inblock -> metaexpr .
 
-    DIVIDER         reduce using rule 46 (term -> str .)
-    $end            reduce using rule 46 (term -> str .)
-    DPROD           reduce using rule 46 (term -> str .)
-    DIVMUL          reduce using rule 46 (term -> str .)
-    PLUSMINUS       reduce using rule 46 (term -> str .)
-    RBRACE          reduce using rule 46 (term -> str .)
-    QUESTION        reduce using rule 46 (term -> str .)
-    RBRACKET        reduce using rule 46 (term -> str .)
-    COMMA           reduce using rule 46 (term -> str .)
-    RPAREN          reduce using rule 46 (term -> str .)
-    COLON           reduce using rule 46 (term -> str .)
+    DIVIDER         reduce using rule 5 (inblock -> metaexpr .)
+    $end            reduce using rule 5 (inblock -> metaexpr .)
+    RBRACE          reduce using rule 5 (inblock -> metaexpr .)
 
 
 state 12
+
+    (52) python -> PYTHON . str
+    (56) str -> . STRING
+
+    STRING          shift and go to state 42
+
+    str                            shift and go to state 61
+
+state 13
 
     (7) inblock -> divider . inblock
     (4) inblock -> .
@@ -544,326 +581,815 @@ state 12
     (35) expr -> . alg0
     (36) expr -> . print
     (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
     (11) deffunc -> . DEFFUNC func COLON dblock
     (10) module -> . MODULE WORD COLON dblock
     (12) application -> . APPLICATION WORD COLON dblock
     (14) declare -> . WORD COLON expr
     (13) define -> . DEFINE WORD expr
-    (52) downlevel -> . DOWNLEVEL expr
+    (54) downlevel -> . DOWNLEVEL expr
     (15) if -> . IF expr QUESTION expr COLON expr
     (17) input -> . INPUT
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
     (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
     (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
     (18) func -> . WORD LPAREN args RPAREN
     (3) block -> . LBRACE inblock RBRACE
     (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
 
   ! shift/reduce conflict for DIVIDER resolved as shift
     $end            reduce using rule 4 (inblock -> .)
     RBRACE          reduce using rule 4 (inblock -> .)
-    DIVIDER         shift and go to state 19
-    DEFFUNC         shift and go to state 40
-    MODULE          shift and go to state 9
-    APPLICATION     shift and go to state 42
-    WORD            shift and go to state 36
-    DEFINE          shift and go to state 39
-    DOWNLEVEL       shift and go to state 18
-    IF              shift and go to state 17
-    INPUT           shift and go to state 34
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    DIVIDER         shift and go to state 44
+    DEFFUNC         shift and go to state 36
+    MODULE          shift and go to state 17
+    APPLICATION     shift and go to state 9
+    WORD            shift and go to state 7
+    DEFINE          shift and go to state 15
+    DOWNLEVEL       shift and go to state 2
+    IF              shift and go to state 50
+    INPUT           shift and go to state 28
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
   ! DIVIDER         [ reduce using rule 4 (inblock -> .) ]
 
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    module                         shift and go to state 29
-    downlevel                      shift and go to state 49
-    application                    shift and go to state 2
-    alg0                           shift and go to state 3
-    str                            shift and go to state 11
-    inblock                        shift and go to state 55
-    alg1                           shift and go to state 41
-    define                         shift and go to state 35
-    input                          shift and go to state 7
-    expr                           shift and go to state 37
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    deffunc                        shift and go to state 31
-    divider                        shift and go to state 12
-    exprnoalg                      shift and go to state 13
-    declare                        shift and go to state 14
-    equal                          shift and go to state 43
-    block                          shift and go to state 30
-    int                            shift and go to state 15
-    metaexpr                       shift and go to state 45
+    term                           shift and go to state 1
+    inblock                        shift and go to state 62
+    alg0                           shift and go to state 4
+    downlevel                      shift and go to state 43
+    divider                        shift and go to state 13
+    module                         shift and go to state 8
+    equal                          shift and go to state 35
+    if                             shift and go to state 10
+    metaexpr                       shift and go to state 11
+    func                           shift and go to state 26
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    application                    shift and go to state 41
+    input                          shift and go to state 16
+    define                         shift and go to state 32
+    return                         shift and go to state 18
+    expr                           shift and go to state 19
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
+    declare                        shift and go to state 38
+    deffunc                        shift and go to state 22
     var                            shift and go to state 48
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
-    if                             shift and go to state 23
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
     print                          shift and go to state 25
-    alg3                           shift and go to state 26
-
-state 13
-
-    (34) expr -> exprnoalg .
-    (64) alg3 -> exprnoalg .
-
-  ! reduce/reduce conflict for RBRACE resolved using rule 34 (expr -> exprnoalg .)
-  ! reduce/reduce conflict for DIVIDER resolved using rule 34 (expr -> exprnoalg .)
-  ! reduce/reduce conflict for $end resolved using rule 34 (expr -> exprnoalg .)
-  ! reduce/reduce conflict for QUESTION resolved using rule 34 (expr -> exprnoalg .)
-  ! reduce/reduce conflict for RBRACKET resolved using rule 34 (expr -> exprnoalg .)
-  ! reduce/reduce conflict for COMMA resolved using rule 34 (expr -> exprnoalg .)
-  ! reduce/reduce conflict for RPAREN resolved using rule 34 (expr -> exprnoalg .)
-  ! reduce/reduce conflict for COLON resolved using rule 34 (expr -> exprnoalg .)
-    DIVIDER         reduce using rule 34 (expr -> exprnoalg .)
-    $end            reduce using rule 34 (expr -> exprnoalg .)
-    RBRACE          reduce using rule 34 (expr -> exprnoalg .)
-    QUESTION        reduce using rule 34 (expr -> exprnoalg .)
-    RBRACKET        reduce using rule 34 (expr -> exprnoalg .)
-    COMMA           reduce using rule 34 (expr -> exprnoalg .)
-    RPAREN          reduce using rule 34 (expr -> exprnoalg .)
-    COLON           reduce using rule 34 (expr -> exprnoalg .)
-    DPROD           reduce using rule 64 (alg3 -> exprnoalg .)
-    DIVMUL          reduce using rule 64 (alg3 -> exprnoalg .)
-    PLUSMINUS       reduce using rule 64 (alg3 -> exprnoalg .)
-
-  ! RBRACE          [ reduce using rule 64 (alg3 -> exprnoalg .) ]
-  ! DIVIDER         [ reduce using rule 64 (alg3 -> exprnoalg .) ]
-  ! $end            [ reduce using rule 64 (alg3 -> exprnoalg .) ]
-  ! QUESTION        [ reduce using rule 64 (alg3 -> exprnoalg .) ]
-  ! RBRACKET        [ reduce using rule 64 (alg3 -> exprnoalg .) ]
-  ! COMMA           [ reduce using rule 64 (alg3 -> exprnoalg .) ]
-  ! RPAREN          [ reduce using rule 64 (alg3 -> exprnoalg .) ]
-  ! COLON           [ reduce using rule 64 (alg3 -> exprnoalg .) ]
-
+    alg2                           shift and go to state 31
+    float                          shift and go to state 27
+    block                          shift and go to state 6
+    int                            shift and go to state 29
 
 state 14
 
-    (23) metaexpr -> declare .
+    (61) alg0 -> PLUSMINUS . alg1
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
+    (18) func -> . WORD LPAREN args RPAREN
+    (3) block -> . LBRACE inblock RBRACE
+    (28) list -> . LBRACKET comms RBRACKET
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
 
-    DIVIDER         reduce using rule 23 (metaexpr -> declare .)
-    $end            reduce using rule 23 (metaexpr -> declare .)
-    RBRACE          reduce using rule 23 (metaexpr -> declare .)
+    WORD            shift and go to state 63
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
+    term                           shift and go to state 1
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    alg3                           shift and go to state 21
+    var                            shift and go to state 48
+    exprnoalg                      shift and go to state 64
+    alg1                           shift and go to state 65
+    int                            shift and go to state 29
+    alg2                           shift and go to state 31
+    block                          shift and go to state 6
+    func                           shift and go to state 26
+    float                          shift and go to state 27
 
 state 15
 
-    (48) term -> int .
+    (13) define -> DEFINE . WORD expr
 
-    DIVIDER         reduce using rule 48 (term -> int .)
-    $end            reduce using rule 48 (term -> int .)
-    DPROD           reduce using rule 48 (term -> int .)
-    DIVMUL          reduce using rule 48 (term -> int .)
-    PLUSMINUS       reduce using rule 48 (term -> int .)
-    RBRACE          reduce using rule 48 (term -> int .)
-    QUESTION        reduce using rule 48 (term -> int .)
-    RBRACKET        reduce using rule 48 (term -> int .)
-    COMMA           reduce using rule 48 (term -> int .)
-    RPAREN          reduce using rule 48 (term -> int .)
-    COLON           reduce using rule 48 (term -> int .)
+    WORD            shift and go to state 66
 
 
 state 16
 
-    (54) str -> STRING .
+    (27) metaexpr -> input .
 
-    DIVIDER         reduce using rule 54 (str -> STRING .)
-    $end            reduce using rule 54 (str -> STRING .)
-    RBRACE          reduce using rule 54 (str -> STRING .)
-    QUESTION        reduce using rule 54 (str -> STRING .)
-    RBRACKET        reduce using rule 54 (str -> STRING .)
-    COMMA           reduce using rule 54 (str -> STRING .)
-    RPAREN          reduce using rule 54 (str -> STRING .)
-    COLON           reduce using rule 54 (str -> STRING .)
-    DPROD           reduce using rule 54 (str -> STRING .)
-    DIVMUL          reduce using rule 54 (str -> STRING .)
-    PLUSMINUS       reduce using rule 54 (str -> STRING .)
+    RBRACE          reduce using rule 27 (metaexpr -> input .)
+    DIVIDER         reduce using rule 27 (metaexpr -> input .)
+    $end            reduce using rule 27 (metaexpr -> input .)
 
 
 state 17
 
-    (15) if -> IF . expr QUESTION expr COLON expr
-    (34) expr -> . exprnoalg
-    (35) expr -> . alg0
-    (36) expr -> . print
-    (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
-    (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
-    (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
-    (18) func -> . WORD LPAREN args RPAREN
-    (3) block -> . LBRACE inblock RBRACE
-    (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (10) module -> MODULE . WORD COLON dblock
 
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    WORD            shift and go to state 56
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    WORD            shift and go to state 67
 
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    block                          shift and go to state 30
-    alg0                           shift and go to state 3
-    expr                           shift and go to state 57
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    exprnoalg                      shift and go to state 13
-    var                            shift and go to state 48
-    int                            shift and go to state 15
-    equal                          shift and go to state 43
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
-    print                          shift and go to state 25
-    alg3                           shift and go to state 26
 
 state 18
 
-    (52) downlevel -> DOWNLEVEL . expr
+    (41) expr -> return .
+
+    DIVIDER         reduce using rule 41 (expr -> return .)
+    $end            reduce using rule 41 (expr -> return .)
+    RBRACE          reduce using rule 41 (expr -> return .)
+    RBRACKET        reduce using rule 41 (expr -> return .)
+    COMMA           reduce using rule 41 (expr -> return .)
+    QUESTION        reduce using rule 41 (expr -> return .)
+    RPAREN          reduce using rule 41 (expr -> return .)
+    COLON           reduce using rule 41 (expr -> return .)
+
+
+state 19
+
+    (19) metaexpr -> expr .
+
+    RBRACE          reduce using rule 19 (metaexpr -> expr .)
+    DIVIDER         reduce using rule 19 (metaexpr -> expr .)
+    $end            reduce using rule 19 (metaexpr -> expr .)
+
+
+state 20
+
+    (3) block -> LBRACE . inblock RBRACE
+    (4) inblock -> .
+    (5) inblock -> . metaexpr
+    (6) inblock -> . inblock divider metaexpr
+    (7) inblock -> . divider inblock
+    (8) inblock -> . inblock divider
+    (19) metaexpr -> . expr
+    (20) metaexpr -> . deffunc
+    (21) metaexpr -> . module
+    (22) metaexpr -> . application
+    (23) metaexpr -> . declare
+    (24) metaexpr -> . define
+    (25) metaexpr -> . downlevel
+    (26) metaexpr -> . if
+    (27) metaexpr -> . input
+    (16) divider -> . DIVIDER
     (34) expr -> . exprnoalg
     (35) expr -> . alg0
     (36) expr -> . print
     (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (11) deffunc -> . DEFFUNC func COLON dblock
+    (10) module -> . MODULE WORD COLON dblock
+    (12) application -> . APPLICATION WORD COLON dblock
+    (14) declare -> . WORD COLON expr
+    (13) define -> . DEFINE WORD expr
+    (54) downlevel -> . DOWNLEVEL expr
+    (15) if -> . IF expr QUESTION expr COLON expr
+    (17) input -> . INPUT
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
     (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
     (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
     (18) func -> . WORD LPAREN args RPAREN
     (3) block -> . LBRACE inblock RBRACE
     (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
 
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    WORD            shift and go to state 56
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+  ! shift/reduce conflict for DIVIDER resolved as shift
+    RBRACE          reduce using rule 4 (inblock -> .)
+    DIVIDER         shift and go to state 44
+    DEFFUNC         shift and go to state 36
+    MODULE          shift and go to state 17
+    APPLICATION     shift and go to state 9
+    WORD            shift and go to state 7
+    DEFINE          shift and go to state 15
+    DOWNLEVEL       shift and go to state 2
+    IF              shift and go to state 50
+    INPUT           shift and go to state 28
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    block                          shift and go to state 30
-    alg0                           shift and go to state 3
-    expr                           shift and go to state 58
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    exprnoalg                      shift and go to state 13
+  ! DIVIDER         [ reduce using rule 4 (inblock -> .) ]
+
+    term                           shift and go to state 1
+    inblock                        shift and go to state 68
+    alg0                           shift and go to state 4
+    downlevel                      shift and go to state 43
+    divider                        shift and go to state 13
+    module                         shift and go to state 8
+    equal                          shift and go to state 35
+    if                             shift and go to state 10
+    metaexpr                       shift and go to state 11
+    func                           shift and go to state 26
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    application                    shift and go to state 41
+    input                          shift and go to state 16
+    define                         shift and go to state 32
+    return                         shift and go to state 18
+    expr                           shift and go to state 19
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
+    declare                        shift and go to state 38
+    deffunc                        shift and go to state 22
     var                            shift and go to state 48
-    int                            shift and go to state 15
-    equal                          shift and go to state 43
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
     print                          shift and go to state 25
-    alg3                           shift and go to state 26
+    alg2                           shift and go to state 31
+    float                          shift and go to state 27
+    block                          shift and go to state 6
+    int                            shift and go to state 29
 
-state 19
+state 21
+
+    (64) alg2 -> alg3 .
+
+    DPROD           reduce using rule 64 (alg2 -> alg3 .)
+    DIVMUL          reduce using rule 64 (alg2 -> alg3 .)
+    PLUSMINUS       reduce using rule 64 (alg2 -> alg3 .)
+    DIVIDER         reduce using rule 64 (alg2 -> alg3 .)
+    $end            reduce using rule 64 (alg2 -> alg3 .)
+    RBRACE          reduce using rule 64 (alg2 -> alg3 .)
+    RBRACKET        reduce using rule 64 (alg2 -> alg3 .)
+    COMMA           reduce using rule 64 (alg2 -> alg3 .)
+    QUESTION        reduce using rule 64 (alg2 -> alg3 .)
+    RPAREN          reduce using rule 64 (alg2 -> alg3 .)
+    COLON           reduce using rule 64 (alg2 -> alg3 .)
+
+
+state 22
+
+    (20) metaexpr -> deffunc .
+
+    RBRACE          reduce using rule 20 (metaexpr -> deffunc .)
+    DIVIDER         reduce using rule 20 (metaexpr -> deffunc .)
+    $end            reduce using rule 20 (metaexpr -> deffunc .)
+
+
+state 23
+
+    (59) alg0 -> alg1 .
+    (63) alg1 -> alg1 . DIVMUL alg2
+
+    PLUSMINUS       reduce using rule 59 (alg0 -> alg1 .)
+    DIVIDER         reduce using rule 59 (alg0 -> alg1 .)
+    $end            reduce using rule 59 (alg0 -> alg1 .)
+    RBRACE          reduce using rule 59 (alg0 -> alg1 .)
+    RBRACKET        reduce using rule 59 (alg0 -> alg1 .)
+    COMMA           reduce using rule 59 (alg0 -> alg1 .)
+    QUESTION        reduce using rule 59 (alg0 -> alg1 .)
+    RPAREN          reduce using rule 59 (alg0 -> alg1 .)
+    COLON           reduce using rule 59 (alg0 -> alg1 .)
+    DIVMUL          shift and go to state 69
+
+
+state 24
+
+    (53) import -> IMPORT . str
+    (56) str -> . STRING
+
+    STRING          shift and go to state 42
+
+    str                            shift and go to state 70
+
+state 25
+
+    (36) expr -> print .
+
+    DIVIDER         reduce using rule 36 (expr -> print .)
+    $end            reduce using rule 36 (expr -> print .)
+    RBRACE          reduce using rule 36 (expr -> print .)
+    RBRACKET        reduce using rule 36 (expr -> print .)
+    COMMA           reduce using rule 36 (expr -> print .)
+    QUESTION        reduce using rule 36 (expr -> print .)
+    RPAREN          reduce using rule 36 (expr -> print .)
+    COLON           reduce using rule 36 (expr -> print .)
+
+
+state 26
+
+    (43) exprnoalg -> func .
+
+    DPROD           reduce using rule 43 (exprnoalg -> func .)
+    DIVMUL          reduce using rule 43 (exprnoalg -> func .)
+    PLUSMINUS       reduce using rule 43 (exprnoalg -> func .)
+    DIVIDER         reduce using rule 43 (exprnoalg -> func .)
+    $end            reduce using rule 43 (exprnoalg -> func .)
+    RBRACE          reduce using rule 43 (exprnoalg -> func .)
+    RBRACKET        reduce using rule 43 (exprnoalg -> func .)
+    COMMA           reduce using rule 43 (exprnoalg -> func .)
+    QUESTION        reduce using rule 43 (exprnoalg -> func .)
+    RPAREN          reduce using rule 43 (exprnoalg -> func .)
+    COLON           reduce using rule 43 (exprnoalg -> func .)
+
+
+state 27
+
+    (48) term -> float .
+
+    DPROD           reduce using rule 48 (term -> float .)
+    DIVMUL          reduce using rule 48 (term -> float .)
+    PLUSMINUS       reduce using rule 48 (term -> float .)
+    DIVIDER         reduce using rule 48 (term -> float .)
+    $end            reduce using rule 48 (term -> float .)
+    RBRACE          reduce using rule 48 (term -> float .)
+    RBRACKET        reduce using rule 48 (term -> float .)
+    COMMA           reduce using rule 48 (term -> float .)
+    QUESTION        reduce using rule 48 (term -> float .)
+    RPAREN          reduce using rule 48 (term -> float .)
+    COLON           reduce using rule 48 (term -> float .)
+
+
+state 28
+
+    (17) input -> INPUT .
+
+    DIVIDER         reduce using rule 17 (input -> INPUT .)
+    $end            reduce using rule 17 (input -> INPUT .)
+    RBRACE          reduce using rule 17 (input -> INPUT .)
+
+
+state 29
+
+    (49) term -> int .
+
+    DPROD           reduce using rule 49 (term -> int .)
+    DIVMUL          reduce using rule 49 (term -> int .)
+    PLUSMINUS       reduce using rule 49 (term -> int .)
+    DIVIDER         reduce using rule 49 (term -> int .)
+    $end            reduce using rule 49 (term -> int .)
+    RBRACE          reduce using rule 49 (term -> int .)
+    RBRACKET        reduce using rule 49 (term -> int .)
+    COMMA           reduce using rule 49 (term -> int .)
+    QUESTION        reduce using rule 49 (term -> int .)
+    RPAREN          reduce using rule 49 (term -> int .)
+    COLON           reduce using rule 49 (term -> int .)
+
+
+state 30
+
+    (51) int -> NUMBER .
+
+    DIVIDER         reduce using rule 51 (int -> NUMBER .)
+    $end            reduce using rule 51 (int -> NUMBER .)
+    RBRACE          reduce using rule 51 (int -> NUMBER .)
+    RBRACKET        reduce using rule 51 (int -> NUMBER .)
+    COMMA           reduce using rule 51 (int -> NUMBER .)
+    QUESTION        reduce using rule 51 (int -> NUMBER .)
+    RPAREN          reduce using rule 51 (int -> NUMBER .)
+    COLON           reduce using rule 51 (int -> NUMBER .)
+    DPROD           reduce using rule 51 (int -> NUMBER .)
+    DIVMUL          reduce using rule 51 (int -> NUMBER .)
+    PLUSMINUS       reduce using rule 51 (int -> NUMBER .)
+
+
+state 31
+
+    (62) alg1 -> alg2 .
+    (65) alg2 -> alg2 . DPROD alg3
+
+    DIVMUL          reduce using rule 62 (alg1 -> alg2 .)
+    PLUSMINUS       reduce using rule 62 (alg1 -> alg2 .)
+    DIVIDER         reduce using rule 62 (alg1 -> alg2 .)
+    $end            reduce using rule 62 (alg1 -> alg2 .)
+    RBRACE          reduce using rule 62 (alg1 -> alg2 .)
+    RBRACKET        reduce using rule 62 (alg1 -> alg2 .)
+    COMMA           reduce using rule 62 (alg1 -> alg2 .)
+    QUESTION        reduce using rule 62 (alg1 -> alg2 .)
+    RPAREN          reduce using rule 62 (alg1 -> alg2 .)
+    COLON           reduce using rule 62 (alg1 -> alg2 .)
+    DPROD           shift and go to state 71
+
+
+state 32
+
+    (24) metaexpr -> define .
+
+    RBRACE          reduce using rule 24 (metaexpr -> define .)
+    DIVIDER         reduce using rule 24 (metaexpr -> define .)
+    $end            reduce using rule 24 (metaexpr -> define .)
+
+
+state 33
+
+    (58) variables -> VARIABLES . expr
+    (34) expr -> . exprnoalg
+    (35) expr -> . alg0
+    (36) expr -> . print
+    (37) expr -> . variables
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
+    (9) print -> . PRINT expr
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
+    (33) equal -> . WORD EQUALS expr
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
+    (18) func -> . WORD LPAREN args RPAREN
+    (3) block -> . LBRACE inblock RBRACE
+    (28) list -> . LBRACKET comms RBRACKET
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
+
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    WORD            shift and go to state 52
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
+
+    term                           shift and go to state 1
+    alg2                           shift and go to state 31
+    alg0                           shift and go to state 4
+    equal                          shift and go to state 35
+    block                          shift and go to state 6
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    return                         shift and go to state 18
+    expr                           shift and go to state 72
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
+    var                            shift and go to state 48
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
+    print                          shift and go to state 25
+    func                           shift and go to state 26
+    float                          shift and go to state 27
+    int                            shift and go to state 29
+
+state 34
+
+    (28) list -> LBRACKET . comms RBRACKET
+    (31) comms -> . expr
+    (32) comms -> . comms COMMA expr
+    (34) expr -> . exprnoalg
+    (35) expr -> . alg0
+    (36) expr -> . print
+    (37) expr -> . variables
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
+    (9) print -> . PRINT expr
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
+    (33) equal -> . WORD EQUALS expr
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
+    (18) func -> . WORD LPAREN args RPAREN
+    (3) block -> . LBRACE inblock RBRACE
+    (28) list -> . LBRACKET comms RBRACKET
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
+
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    WORD            shift and go to state 52
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
+
+    term                           shift and go to state 1
+    alg0                           shift and go to state 4
+    import                         shift and go to state 40
+    equal                          shift and go to state 35
+    block                          shift and go to state 6
+    variables                      shift and go to state 39
+    func                           shift and go to state 26
+    return                         shift and go to state 18
+    expr                           shift and go to state 73
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
+    var                            shift and go to state 48
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
+    print                          shift and go to state 25
+    alg2                           shift and go to state 31
+    float                          shift and go to state 27
+    comms                          shift and go to state 74
+    int                            shift and go to state 29
+
+state 35
+
+    (40) expr -> equal .
+
+    DIVIDER         reduce using rule 40 (expr -> equal .)
+    $end            reduce using rule 40 (expr -> equal .)
+    RBRACE          reduce using rule 40 (expr -> equal .)
+    RBRACKET        reduce using rule 40 (expr -> equal .)
+    COMMA           reduce using rule 40 (expr -> equal .)
+    QUESTION        reduce using rule 40 (expr -> equal .)
+    RPAREN          reduce using rule 40 (expr -> equal .)
+    COLON           reduce using rule 40 (expr -> equal .)
+
+
+state 36
+
+    (11) deffunc -> DEFFUNC . func COLON dblock
+    (18) func -> . WORD LPAREN args RPAREN
+
+    WORD            shift and go to state 76
+
+    func                           shift and go to state 75
+
+state 37
+
+    (46) return -> RETURN . expr
+    (34) expr -> . exprnoalg
+    (35) expr -> . alg0
+    (36) expr -> . print
+    (37) expr -> . variables
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
+    (9) print -> . PRINT expr
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
+    (33) equal -> . WORD EQUALS expr
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
+    (18) func -> . WORD LPAREN args RPAREN
+    (3) block -> . LBRACE inblock RBRACE
+    (28) list -> . LBRACKET comms RBRACKET
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
+
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    WORD            shift and go to state 52
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
+
+    term                           shift and go to state 1
+    alg2                           shift and go to state 31
+    alg0                           shift and go to state 4
+    equal                          shift and go to state 35
+    block                          shift and go to state 6
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    return                         shift and go to state 18
+    expr                           shift and go to state 77
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
+    var                            shift and go to state 48
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
+    print                          shift and go to state 25
+    func                           shift and go to state 26
+    float                          shift and go to state 27
+    int                            shift and go to state 29
+
+state 38
+
+    (23) metaexpr -> declare .
+
+    RBRACE          reduce using rule 23 (metaexpr -> declare .)
+    DIVIDER         reduce using rule 23 (metaexpr -> declare .)
+    $end            reduce using rule 23 (metaexpr -> declare .)
+
+
+state 39
+
+    (37) expr -> variables .
+
+    DIVIDER         reduce using rule 37 (expr -> variables .)
+    $end            reduce using rule 37 (expr -> variables .)
+    RBRACE          reduce using rule 37 (expr -> variables .)
+    RBRACKET        reduce using rule 37 (expr -> variables .)
+    COMMA           reduce using rule 37 (expr -> variables .)
+    QUESTION        reduce using rule 37 (expr -> variables .)
+    RPAREN          reduce using rule 37 (expr -> variables .)
+    COLON           reduce using rule 37 (expr -> variables .)
+
+
+state 40
+
+    (39) expr -> import .
+
+    DIVIDER         reduce using rule 39 (expr -> import .)
+    $end            reduce using rule 39 (expr -> import .)
+    RBRACE          reduce using rule 39 (expr -> import .)
+    RBRACKET        reduce using rule 39 (expr -> import .)
+    COMMA           reduce using rule 39 (expr -> import .)
+    QUESTION        reduce using rule 39 (expr -> import .)
+    RPAREN          reduce using rule 39 (expr -> import .)
+    COLON           reduce using rule 39 (expr -> import .)
+
+
+state 41
+
+    (22) metaexpr -> application .
+
+    RBRACE          reduce using rule 22 (metaexpr -> application .)
+    DIVIDER         reduce using rule 22 (metaexpr -> application .)
+    $end            reduce using rule 22 (metaexpr -> application .)
+
+
+state 42
+
+    (56) str -> STRING .
+
+    RBRACKET        reduce using rule 56 (str -> STRING .)
+    COMMA           reduce using rule 56 (str -> STRING .)
+    RPAREN          reduce using rule 56 (str -> STRING .)
+    DPROD           reduce using rule 56 (str -> STRING .)
+    DIVMUL          reduce using rule 56 (str -> STRING .)
+    PLUSMINUS       reduce using rule 56 (str -> STRING .)
+    DIVIDER         reduce using rule 56 (str -> STRING .)
+    $end            reduce using rule 56 (str -> STRING .)
+    RBRACE          reduce using rule 56 (str -> STRING .)
+    QUESTION        reduce using rule 56 (str -> STRING .)
+    COLON           reduce using rule 56 (str -> STRING .)
+
+
+state 43
+
+    (25) metaexpr -> downlevel .
+
+    RBRACE          reduce using rule 25 (metaexpr -> downlevel .)
+    DIVIDER         reduce using rule 25 (metaexpr -> downlevel .)
+    $end            reduce using rule 25 (metaexpr -> downlevel .)
+
+
+state 44
 
     (16) divider -> DIVIDER .
 
+    DIVIDER         reduce using rule 16 (divider -> DIVIDER .)
     DEFFUNC         reduce using rule 16 (divider -> DIVIDER .)
     MODULE          reduce using rule 16 (divider -> DIVIDER .)
     APPLICATION     reduce using rule 16 (divider -> DIVIDER .)
@@ -875,6 +1401,7 @@ state 19
     PLUSMINUS       reduce using rule 16 (divider -> DIVIDER .)
     PRINT           reduce using rule 16 (divider -> DIVIDER .)
     VARIABLES       reduce using rule 16 (divider -> DIVIDER .)
+    PYTHON          reduce using rule 16 (divider -> DIVIDER .)
     IMPORT          reduce using rule 16 (divider -> DIVIDER .)
     RETURN          reduce using rule 16 (divider -> DIVIDER .)
     LBRACE          reduce using rule 16 (divider -> DIVIDER .)
@@ -882,724 +1409,233 @@ state 19
     STRING          reduce using rule 16 (divider -> DIVIDER .)
     FLOAT           reduce using rule 16 (divider -> DIVIDER .)
     NUMBER          reduce using rule 16 (divider -> DIVIDER .)
-    DIVIDER         reduce using rule 16 (divider -> DIVIDER .)
     $end            reduce using rule 16 (divider -> DIVIDER .)
     RBRACE          reduce using rule 16 (divider -> DIVIDER .)
 
 
-state 20
-
-    (42) exprnoalg -> func .
-
-    DPROD           reduce using rule 42 (exprnoalg -> func .)
-    DIVMUL          reduce using rule 42 (exprnoalg -> func .)
-    PLUSMINUS       reduce using rule 42 (exprnoalg -> func .)
-    DIVIDER         reduce using rule 42 (exprnoalg -> func .)
-    $end            reduce using rule 42 (exprnoalg -> func .)
-    RBRACE          reduce using rule 42 (exprnoalg -> func .)
-    QUESTION        reduce using rule 42 (exprnoalg -> func .)
-    RBRACKET        reduce using rule 42 (exprnoalg -> func .)
-    COMMA           reduce using rule 42 (exprnoalg -> func .)
-    RPAREN          reduce using rule 42 (exprnoalg -> func .)
-    COLON           reduce using rule 42 (exprnoalg -> func .)
-
-
-state 21
-
-    (50) int -> NUMBER .
-
-    DPROD           reduce using rule 50 (int -> NUMBER .)
-    DIVMUL          reduce using rule 50 (int -> NUMBER .)
-    PLUSMINUS       reduce using rule 50 (int -> NUMBER .)
-    DIVIDER         reduce using rule 50 (int -> NUMBER .)
-    $end            reduce using rule 50 (int -> NUMBER .)
-    RBRACE          reduce using rule 50 (int -> NUMBER .)
-    QUESTION        reduce using rule 50 (int -> NUMBER .)
-    RBRACKET        reduce using rule 50 (int -> NUMBER .)
-    COMMA           reduce using rule 50 (int -> NUMBER .)
-    RPAREN          reduce using rule 50 (int -> NUMBER .)
-    COLON           reduce using rule 50 (int -> NUMBER .)
-
-
-state 22
-
-    (40) expr -> return .
-
-    DIVIDER         reduce using rule 40 (expr -> return .)
-    $end            reduce using rule 40 (expr -> return .)
-    RBRACE          reduce using rule 40 (expr -> return .)
-    QUESTION        reduce using rule 40 (expr -> return .)
-    RBRACKET        reduce using rule 40 (expr -> return .)
-    COMMA           reduce using rule 40 (expr -> return .)
-    RPAREN          reduce using rule 40 (expr -> return .)
-    COLON           reduce using rule 40 (expr -> return .)
-
-
-state 23
-
-    (26) metaexpr -> if .
-
-    DIVIDER         reduce using rule 26 (metaexpr -> if .)
-    $end            reduce using rule 26 (metaexpr -> if .)
-    RBRACE          reduce using rule 26 (metaexpr -> if .)
-
-
-state 24
-
-    (9) print -> PRINT . expr
-    (34) expr -> . exprnoalg
-    (35) expr -> . alg0
-    (36) expr -> . print
-    (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
-    (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
-    (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
-    (18) func -> . WORD LPAREN args RPAREN
-    (3) block -> . LBRACE inblock RBRACE
-    (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
-
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    WORD            shift and go to state 56
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
-
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    block                          shift and go to state 30
-    alg0                           shift and go to state 3
-    expr                           shift and go to state 59
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    exprnoalg                      shift and go to state 13
-    var                            shift and go to state 48
-    int                            shift and go to state 15
-    equal                          shift and go to state 43
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
-    print                          shift and go to state 25
-    alg3                           shift and go to state 26
-
-state 25
-
-    (36) expr -> print .
-
-    DIVIDER         reduce using rule 36 (expr -> print .)
-    $end            reduce using rule 36 (expr -> print .)
-    RBRACE          reduce using rule 36 (expr -> print .)
-    QUESTION        reduce using rule 36 (expr -> print .)
-    RBRACKET        reduce using rule 36 (expr -> print .)
-    COMMA           reduce using rule 36 (expr -> print .)
-    RPAREN          reduce using rule 36 (expr -> print .)
-    COLON           reduce using rule 36 (expr -> print .)
-
-
-state 26
-
-    (62) alg2 -> alg3 .
-
-    DPROD           reduce using rule 62 (alg2 -> alg3 .)
-    DIVMUL          reduce using rule 62 (alg2 -> alg3 .)
-    PLUSMINUS       reduce using rule 62 (alg2 -> alg3 .)
-    DIVIDER         reduce using rule 62 (alg2 -> alg3 .)
-    $end            reduce using rule 62 (alg2 -> alg3 .)
-    RBRACE          reduce using rule 62 (alg2 -> alg3 .)
-    QUESTION        reduce using rule 62 (alg2 -> alg3 .)
-    RBRACKET        reduce using rule 62 (alg2 -> alg3 .)
-    COMMA           reduce using rule 62 (alg2 -> alg3 .)
-    RPAREN          reduce using rule 62 (alg2 -> alg3 .)
-    COLON           reduce using rule 62 (alg2 -> alg3 .)
-
-
-state 27
-
-    (60) alg1 -> alg2 .
-    (63) alg2 -> alg2 . DPROD alg3
-
-    DIVMUL          reduce using rule 60 (alg1 -> alg2 .)
-    PLUSMINUS       reduce using rule 60 (alg1 -> alg2 .)
-    QUESTION        reduce using rule 60 (alg1 -> alg2 .)
-    DIVIDER         reduce using rule 60 (alg1 -> alg2 .)
-    $end            reduce using rule 60 (alg1 -> alg2 .)
-    RBRACE          reduce using rule 60 (alg1 -> alg2 .)
-    RBRACKET        reduce using rule 60 (alg1 -> alg2 .)
-    COMMA           reduce using rule 60 (alg1 -> alg2 .)
-    RPAREN          reduce using rule 60 (alg1 -> alg2 .)
-    COLON           reduce using rule 60 (alg1 -> alg2 .)
-    DPROD           shift and go to state 60
-
-
-state 28
-
-    (47) term -> float .
-
-    DIVIDER         reduce using rule 47 (term -> float .)
-    $end            reduce using rule 47 (term -> float .)
-    DPROD           reduce using rule 47 (term -> float .)
-    DIVMUL          reduce using rule 47 (term -> float .)
-    PLUSMINUS       reduce using rule 47 (term -> float .)
-    RBRACE          reduce using rule 47 (term -> float .)
-    QUESTION        reduce using rule 47 (term -> float .)
-    RBRACKET        reduce using rule 47 (term -> float .)
-    COMMA           reduce using rule 47 (term -> float .)
-    RPAREN          reduce using rule 47 (term -> float .)
-    COLON           reduce using rule 47 (term -> float .)
-
-
-state 29
-
-    (21) metaexpr -> module .
-
-    DIVIDER         reduce using rule 21 (metaexpr -> module .)
-    $end            reduce using rule 21 (metaexpr -> module .)
-    RBRACE          reduce using rule 21 (metaexpr -> module .)
-
-
-state 30
-
-    (43) exprnoalg -> block .
-
-    DPROD           reduce using rule 43 (exprnoalg -> block .)
-    DIVMUL          reduce using rule 43 (exprnoalg -> block .)
-    PLUSMINUS       reduce using rule 43 (exprnoalg -> block .)
-    DIVIDER         reduce using rule 43 (exprnoalg -> block .)
-    $end            reduce using rule 43 (exprnoalg -> block .)
-    RBRACE          reduce using rule 43 (exprnoalg -> block .)
-    QUESTION        reduce using rule 43 (exprnoalg -> block .)
-    RBRACKET        reduce using rule 43 (exprnoalg -> block .)
-    COMMA           reduce using rule 43 (exprnoalg -> block .)
-    RPAREN          reduce using rule 43 (exprnoalg -> block .)
-    COLON           reduce using rule 43 (exprnoalg -> block .)
-
-
-state 31
-
-    (20) metaexpr -> deffunc .
-
-    DIVIDER         reduce using rule 20 (metaexpr -> deffunc .)
-    $end            reduce using rule 20 (metaexpr -> deffunc .)
-    RBRACE          reduce using rule 20 (metaexpr -> deffunc .)
-
-
-state 32
-
-    (37) expr -> variables .
-
-    DIVIDER         reduce using rule 37 (expr -> variables .)
-    $end            reduce using rule 37 (expr -> variables .)
-    RBRACE          reduce using rule 37 (expr -> variables .)
-    QUESTION        reduce using rule 37 (expr -> variables .)
-    RBRACKET        reduce using rule 37 (expr -> variables .)
-    COMMA           reduce using rule 37 (expr -> variables .)
-    RPAREN          reduce using rule 37 (expr -> variables .)
-    COLON           reduce using rule 37 (expr -> variables .)
-
-
-state 33
-
-    (45) return -> RETURN . expr
-    (34) expr -> . exprnoalg
-    (35) expr -> . alg0
-    (36) expr -> . print
-    (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
-    (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
-    (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
-    (18) func -> . WORD LPAREN args RPAREN
-    (3) block -> . LBRACE inblock RBRACE
-    (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
-
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    WORD            shift and go to state 56
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
-
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    block                          shift and go to state 30
-    alg0                           shift and go to state 3
-    expr                           shift and go to state 61
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    exprnoalg                      shift and go to state 13
-    var                            shift and go to state 48
-    int                            shift and go to state 15
-    equal                          shift and go to state 43
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
-    print                          shift and go to state 25
-    alg3                           shift and go to state 26
-
-state 34
-
-    (17) input -> INPUT .
-
-    DIVIDER         reduce using rule 17 (input -> INPUT .)
-    $end            reduce using rule 17 (input -> INPUT .)
-    RBRACE          reduce using rule 17 (input -> INPUT .)
-
-
-state 35
-
-    (24) metaexpr -> define .
-
-    DIVIDER         reduce using rule 24 (metaexpr -> define .)
-    $end            reduce using rule 24 (metaexpr -> define .)
-    RBRACE          reduce using rule 24 (metaexpr -> define .)
-
-
-state 36
-
-    (14) declare -> WORD . COLON expr
-    (33) equal -> WORD . EQUALS expr
-    (18) func -> WORD . LPAREN args RPAREN
-    (55) var -> WORD .
-
-    COLON           shift and go to state 64
-    EQUALS          shift and go to state 62
-    LPAREN          shift and go to state 63
-    DIVIDER         reduce using rule 55 (var -> WORD .)
-    $end            reduce using rule 55 (var -> WORD .)
-    DPROD           reduce using rule 55 (var -> WORD .)
-    DIVMUL          reduce using rule 55 (var -> WORD .)
-    PLUSMINUS       reduce using rule 55 (var -> WORD .)
-    RBRACE          reduce using rule 55 (var -> WORD .)
-
-
-state 37
-
-    (19) metaexpr -> expr .
-
-    DIVIDER         reduce using rule 19 (metaexpr -> expr .)
-    $end            reduce using rule 19 (metaexpr -> expr .)
-    RBRACE          reduce using rule 19 (metaexpr -> expr .)
-
-
-state 38
-
-    (44) exprnoalg -> list .
-
-    DPROD           reduce using rule 44 (exprnoalg -> list .)
-    DIVMUL          reduce using rule 44 (exprnoalg -> list .)
-    PLUSMINUS       reduce using rule 44 (exprnoalg -> list .)
-    DIVIDER         reduce using rule 44 (exprnoalg -> list .)
-    $end            reduce using rule 44 (exprnoalg -> list .)
-    RBRACE          reduce using rule 44 (exprnoalg -> list .)
-    QUESTION        reduce using rule 44 (exprnoalg -> list .)
-    RBRACKET        reduce using rule 44 (exprnoalg -> list .)
-    COMMA           reduce using rule 44 (exprnoalg -> list .)
-    RPAREN          reduce using rule 44 (exprnoalg -> list .)
-    COLON           reduce using rule 44 (exprnoalg -> list .)
-
-
-state 39
-
-    (13) define -> DEFINE . WORD expr
-
-    WORD            shift and go to state 65
-
-
-state 40
-
-    (11) deffunc -> DEFFUNC . func COLON dblock
-    (18) func -> . WORD LPAREN args RPAREN
-
-    WORD            shift and go to state 67
-
-    func                           shift and go to state 66
-
-state 41
-
-    (57) alg0 -> alg1 .
-    (61) alg1 -> alg1 . DIVMUL alg2
-
-    PLUSMINUS       reduce using rule 57 (alg0 -> alg1 .)
-    QUESTION        reduce using rule 57 (alg0 -> alg1 .)
-    DIVIDER         reduce using rule 57 (alg0 -> alg1 .)
-    $end            reduce using rule 57 (alg0 -> alg1 .)
-    RBRACE          reduce using rule 57 (alg0 -> alg1 .)
-    COMMA           reduce using rule 57 (alg0 -> alg1 .)
-    RPAREN          reduce using rule 57 (alg0 -> alg1 .)
-    RBRACKET        reduce using rule 57 (alg0 -> alg1 .)
-    COLON           reduce using rule 57 (alg0 -> alg1 .)
-    DIVMUL          shift and go to state 68
-
-
-state 42
-
-    (12) application -> APPLICATION . WORD COLON dblock
-
-    WORD            shift and go to state 69
-
-
-state 43
-
-    (39) expr -> equal .
-
-    DIVIDER         reduce using rule 39 (expr -> equal .)
-    $end            reduce using rule 39 (expr -> equal .)
-    RBRACE          reduce using rule 39 (expr -> equal .)
-    QUESTION        reduce using rule 39 (expr -> equal .)
-    RBRACKET        reduce using rule 39 (expr -> equal .)
-    COMMA           reduce using rule 39 (expr -> equal .)
-    RPAREN          reduce using rule 39 (expr -> equal .)
-    COLON           reduce using rule 39 (expr -> equal .)
-
-
-state 44
-
-    (28) list -> LBRACKET . comms RBRACKET
-    (31) comms -> . expr
-    (32) comms -> . comms COMMA expr
-    (34) expr -> . exprnoalg
-    (35) expr -> . alg0
-    (36) expr -> . print
-    (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
-    (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
-    (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
-    (18) func -> . WORD LPAREN args RPAREN
-    (3) block -> . LBRACE inblock RBRACE
-    (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
-
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    WORD            shift and go to state 56
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
-
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    variables                      shift and go to state 32
-    alg0                           shift and go to state 3
-    comms                          shift and go to state 70
-    expr                           shift and go to state 71
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    exprnoalg                      shift and go to state 13
-    var                            shift and go to state 48
-    int                            shift and go to state 15
-    equal                          shift and go to state 43
-    func                           shift and go to state 20
-    block                          shift and go to state 30
-    return                         shift and go to state 22
-    print                          shift and go to state 25
-    alg3                           shift and go to state 26
-
 state 45
 
-    (5) inblock -> metaexpr .
+    (45) exprnoalg -> list .
 
-    DIVIDER         reduce using rule 5 (inblock -> metaexpr .)
-    $end            reduce using rule 5 (inblock -> metaexpr .)
-    RBRACE          reduce using rule 5 (inblock -> metaexpr .)
+    DPROD           reduce using rule 45 (exprnoalg -> list .)
+    DIVMUL          reduce using rule 45 (exprnoalg -> list .)
+    PLUSMINUS       reduce using rule 45 (exprnoalg -> list .)
+    DIVIDER         reduce using rule 45 (exprnoalg -> list .)
+    $end            reduce using rule 45 (exprnoalg -> list .)
+    RBRACE          reduce using rule 45 (exprnoalg -> list .)
+    RBRACKET        reduce using rule 45 (exprnoalg -> list .)
+    COMMA           reduce using rule 45 (exprnoalg -> list .)
+    QUESTION        reduce using rule 45 (exprnoalg -> list .)
+    RPAREN          reduce using rule 45 (exprnoalg -> list .)
+    COLON           reduce using rule 45 (exprnoalg -> list .)
 
 
 state 46
 
-    (59) alg0 -> PLUSMINUS . alg1
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
-    (18) func -> . WORD LPAREN args RPAREN
-    (3) block -> . LBRACE inblock RBRACE
-    (28) list -> . LBRACKET comms RBRACKET
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
+    (47) term -> str .
 
-    WORD            shift and go to state 72
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    DPROD           reduce using rule 47 (term -> str .)
+    DIVMUL          reduce using rule 47 (term -> str .)
+    PLUSMINUS       reduce using rule 47 (term -> str .)
+    DIVIDER         reduce using rule 47 (term -> str .)
+    $end            reduce using rule 47 (term -> str .)
+    RBRACE          reduce using rule 47 (term -> str .)
+    RBRACKET        reduce using rule 47 (term -> str .)
+    COMMA           reduce using rule 47 (term -> str .)
+    QUESTION        reduce using rule 47 (term -> str .)
+    RPAREN          reduce using rule 47 (term -> str .)
+    COLON           reduce using rule 47 (term -> str .)
 
-    alg2                           shift and go to state 27
-    term                           shift and go to state 10
-    alg1                           shift and go to state 73
-    exprnoalg                      shift and go to state 74
-    str                            shift and go to state 11
-    float                          shift and go to state 28
-    var                            shift and go to state 48
-    int                            shift and go to state 15
-    list                           shift and go to state 38
-    func                           shift and go to state 20
-    block                          shift and go to state 30
-    alg3                           shift and go to state 26
 
 state 47
 
-    (56) variables -> VARIABLES . expr
-    (34) expr -> . exprnoalg
-    (35) expr -> . alg0
-    (36) expr -> . print
-    (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
-    (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
-    (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
-    (18) func -> . WORD LPAREN args RPAREN
-    (3) block -> . LBRACE inblock RBRACE
-    (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (38) expr -> python .
 
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    WORD            shift and go to state 56
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    DIVIDER         reduce using rule 38 (expr -> python .)
+    $end            reduce using rule 38 (expr -> python .)
+    RBRACE          reduce using rule 38 (expr -> python .)
+    RBRACKET        reduce using rule 38 (expr -> python .)
+    COMMA           reduce using rule 38 (expr -> python .)
+    QUESTION        reduce using rule 38 (expr -> python .)
+    RPAREN          reduce using rule 38 (expr -> python .)
+    COLON           reduce using rule 38 (expr -> python .)
 
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    block                          shift and go to state 30
-    alg0                           shift and go to state 3
-    expr                           shift and go to state 75
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    exprnoalg                      shift and go to state 13
-    var                            shift and go to state 48
-    int                            shift and go to state 15
-    equal                          shift and go to state 43
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
-    print                          shift and go to state 25
-    alg3                           shift and go to state 26
 
 state 48
 
-    (49) term -> var .
+    (50) term -> var .
 
-    DIVIDER         reduce using rule 49 (term -> var .)
-    $end            reduce using rule 49 (term -> var .)
-    DPROD           reduce using rule 49 (term -> var .)
-    DIVMUL          reduce using rule 49 (term -> var .)
-    PLUSMINUS       reduce using rule 49 (term -> var .)
-    RBRACE          reduce using rule 49 (term -> var .)
-    QUESTION        reduce using rule 49 (term -> var .)
-    RBRACKET        reduce using rule 49 (term -> var .)
-    COMMA           reduce using rule 49 (term -> var .)
-    RPAREN          reduce using rule 49 (term -> var .)
-    COLON           reduce using rule 49 (term -> var .)
+    DPROD           reduce using rule 50 (term -> var .)
+    DIVMUL          reduce using rule 50 (term -> var .)
+    PLUSMINUS       reduce using rule 50 (term -> var .)
+    DIVIDER         reduce using rule 50 (term -> var .)
+    $end            reduce using rule 50 (term -> var .)
+    RBRACE          reduce using rule 50 (term -> var .)
+    RBRACKET        reduce using rule 50 (term -> var .)
+    COMMA           reduce using rule 50 (term -> var .)
+    QUESTION        reduce using rule 50 (term -> var .)
+    RPAREN          reduce using rule 50 (term -> var .)
+    COLON           reduce using rule 50 (term -> var .)
 
 
 state 49
 
-    (25) metaexpr -> downlevel .
+    (34) expr -> exprnoalg .
+    (66) alg3 -> exprnoalg .
 
-    DIVIDER         reduce using rule 25 (metaexpr -> downlevel .)
-    $end            reduce using rule 25 (metaexpr -> downlevel .)
-    RBRACE          reduce using rule 25 (metaexpr -> downlevel .)
+  ! reduce/reduce conflict for DIVIDER resolved using rule 34 (expr -> exprnoalg .)
+  ! reduce/reduce conflict for $end resolved using rule 34 (expr -> exprnoalg .)
+  ! reduce/reduce conflict for RBRACE resolved using rule 34 (expr -> exprnoalg .)
+  ! reduce/reduce conflict for COLON resolved using rule 34 (expr -> exprnoalg .)
+  ! reduce/reduce conflict for RBRACKET resolved using rule 34 (expr -> exprnoalg .)
+  ! reduce/reduce conflict for COMMA resolved using rule 34 (expr -> exprnoalg .)
+  ! reduce/reduce conflict for QUESTION resolved using rule 34 (expr -> exprnoalg .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 34 (expr -> exprnoalg .)
+    DIVIDER         reduce using rule 34 (expr -> exprnoalg .)
+    $end            reduce using rule 34 (expr -> exprnoalg .)
+    RBRACE          reduce using rule 34 (expr -> exprnoalg .)
+    RBRACKET        reduce using rule 34 (expr -> exprnoalg .)
+    COMMA           reduce using rule 34 (expr -> exprnoalg .)
+    QUESTION        reduce using rule 34 (expr -> exprnoalg .)
+    RPAREN          reduce using rule 34 (expr -> exprnoalg .)
+    COLON           reduce using rule 34 (expr -> exprnoalg .)
+    DPROD           reduce using rule 66 (alg3 -> exprnoalg .)
+    DIVMUL          reduce using rule 66 (alg3 -> exprnoalg .)
+    PLUSMINUS       reduce using rule 66 (alg3 -> exprnoalg .)
+
+  ! DIVIDER         [ reduce using rule 66 (alg3 -> exprnoalg .) ]
+  ! $end            [ reduce using rule 66 (alg3 -> exprnoalg .) ]
+  ! RBRACE          [ reduce using rule 66 (alg3 -> exprnoalg .) ]
+  ! COLON           [ reduce using rule 66 (alg3 -> exprnoalg .) ]
+  ! RBRACKET        [ reduce using rule 66 (alg3 -> exprnoalg .) ]
+  ! COMMA           [ reduce using rule 66 (alg3 -> exprnoalg .) ]
+  ! QUESTION        [ reduce using rule 66 (alg3 -> exprnoalg .) ]
+  ! RPAREN          [ reduce using rule 66 (alg3 -> exprnoalg .) ]
 
 
 state 50
 
-    (58) alg0 -> alg0 PLUSMINUS . alg1
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
+    (15) if -> IF . expr QUESTION expr COLON expr
+    (34) expr -> . exprnoalg
+    (35) expr -> . alg0
+    (36) expr -> . print
+    (37) expr -> . variables
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
+    (9) print -> . PRINT expr
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
+    (33) equal -> . WORD EQUALS expr
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
     (18) func -> . WORD LPAREN args RPAREN
     (3) block -> . LBRACE inblock RBRACE
     (28) list -> . LBRACKET comms RBRACKET
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
 
-    WORD            shift and go to state 72
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    WORD            shift and go to state 52
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
-    alg2                           shift and go to state 27
-    term                           shift and go to state 10
-    alg1                           shift and go to state 76
-    exprnoalg                      shift and go to state 74
-    str                            shift and go to state 11
-    float                          shift and go to state 28
-    int                            shift and go to state 15
-    list                           shift and go to state 38
+    term                           shift and go to state 1
+    alg2                           shift and go to state 31
+    alg0                           shift and go to state 4
+    equal                          shift and go to state 35
+    block                          shift and go to state 6
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    return                         shift and go to state 18
+    expr                           shift and go to state 78
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
     var                            shift and go to state 48
-    func                           shift and go to state 20
-    block                          shift and go to state 30
-    alg3                           shift and go to state 26
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
+    print                          shift and go to state 25
+    func                           shift and go to state 26
+    float                          shift and go to state 27
+    int                            shift and go to state 29
 
 state 51
 
-    (51) import -> IMPORT str .
+    (55) float -> FLOAT .
 
-    DIVIDER         reduce using rule 51 (import -> IMPORT str .)
-    $end            reduce using rule 51 (import -> IMPORT str .)
-    RBRACE          reduce using rule 51 (import -> IMPORT str .)
-    QUESTION        reduce using rule 51 (import -> IMPORT str .)
-    RBRACKET        reduce using rule 51 (import -> IMPORT str .)
-    COMMA           reduce using rule 51 (import -> IMPORT str .)
-    RPAREN          reduce using rule 51 (import -> IMPORT str .)
-    COLON           reduce using rule 51 (import -> IMPORT str .)
+    DIVIDER         reduce using rule 55 (float -> FLOAT .)
+    $end            reduce using rule 55 (float -> FLOAT .)
+    RBRACE          reduce using rule 55 (float -> FLOAT .)
+    DPROD           reduce using rule 55 (float -> FLOAT .)
+    DIVMUL          reduce using rule 55 (float -> FLOAT .)
+    PLUSMINUS       reduce using rule 55 (float -> FLOAT .)
+    RBRACKET        reduce using rule 55 (float -> FLOAT .)
+    COMMA           reduce using rule 55 (float -> FLOAT .)
+    RPAREN          reduce using rule 55 (float -> FLOAT .)
+    QUESTION        reduce using rule 55 (float -> FLOAT .)
+    COLON           reduce using rule 55 (float -> FLOAT .)
 
 
 state 52
+
+    (33) equal -> WORD . EQUALS expr
+    (18) func -> WORD . LPAREN args RPAREN
+    (57) var -> WORD .
+
+    EQUALS          shift and go to state 57
+    LPAREN          shift and go to state 58
+    COMMA           reduce using rule 57 (var -> WORD .)
+    RPAREN          reduce using rule 57 (var -> WORD .)
+    DPROD           reduce using rule 57 (var -> WORD .)
+    DIVMUL          reduce using rule 57 (var -> WORD .)
+    PLUSMINUS       reduce using rule 57 (var -> WORD .)
+    DIVIDER         reduce using rule 57 (var -> WORD .)
+    $end            reduce using rule 57 (var -> WORD .)
+    RBRACE          reduce using rule 57 (var -> WORD .)
+    RBRACKET        reduce using rule 57 (var -> WORD .)
+    QUESTION        reduce using rule 57 (var -> WORD .)
+    COLON           reduce using rule 57 (var -> WORD .)
+
+
+state 53
+
+    (54) downlevel -> DOWNLEVEL expr .
+
+    RBRACE          reduce using rule 54 (downlevel -> DOWNLEVEL expr .)
+    DIVIDER         reduce using rule 54 (downlevel -> DOWNLEVEL expr .)
+    $end            reduce using rule 54 (downlevel -> DOWNLEVEL expr .)
+
+
+state 54
 
     (6) inblock -> inblock divider . metaexpr
     (8) inblock -> inblock divider .
@@ -1616,307 +1652,235 @@ state 52
     (35) expr -> . alg0
     (36) expr -> . print
     (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
     (11) deffunc -> . DEFFUNC func COLON dblock
     (10) module -> . MODULE WORD COLON dblock
     (12) application -> . APPLICATION WORD COLON dblock
     (14) declare -> . WORD COLON expr
     (13) define -> . DEFINE WORD expr
-    (52) downlevel -> . DOWNLEVEL expr
+    (54) downlevel -> . DOWNLEVEL expr
     (15) if -> . IF expr QUESTION expr COLON expr
     (17) input -> . INPUT
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
     (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
     (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
     (18) func -> . WORD LPAREN args RPAREN
     (3) block -> . LBRACE inblock RBRACE
     (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
 
     DIVIDER         reduce using rule 8 (inblock -> inblock divider .)
     $end            reduce using rule 8 (inblock -> inblock divider .)
     RBRACE          reduce using rule 8 (inblock -> inblock divider .)
-    DEFFUNC         shift and go to state 40
-    MODULE          shift and go to state 9
-    APPLICATION     shift and go to state 42
-    WORD            shift and go to state 36
-    DEFINE          shift and go to state 39
-    DOWNLEVEL       shift and go to state 18
-    IF              shift and go to state 17
-    INPUT           shift and go to state 34
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    DEFFUNC         shift and go to state 36
+    MODULE          shift and go to state 17
+    APPLICATION     shift and go to state 9
+    WORD            shift and go to state 7
+    DEFINE          shift and go to state 15
+    DOWNLEVEL       shift and go to state 2
+    IF              shift and go to state 50
+    INPUT           shift and go to state 28
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    module                         shift and go to state 29
-    downlevel                      shift and go to state 49
-    application                    shift and go to state 2
-    alg0                           shift and go to state 3
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    define                         shift and go to state 35
-    input                          shift and go to state 7
-    expr                           shift and go to state 37
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    deffunc                        shift and go to state 31
-    exprnoalg                      shift and go to state 13
-    declare                        shift and go to state 14
-    equal                          shift and go to state 43
-    block                          shift and go to state 30
-    int                            shift and go to state 15
-    metaexpr                       shift and go to state 77
+    term                           shift and go to state 1
+    alg0                           shift and go to state 4
+    downlevel                      shift and go to state 43
+    module                         shift and go to state 8
+    equal                          shift and go to state 35
+    if                             shift and go to state 10
+    metaexpr                       shift and go to state 79
+    func                           shift and go to state 26
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    application                    shift and go to state 41
+    input                          shift and go to state 16
+    define                         shift and go to state 32
+    return                         shift and go to state 18
+    expr                           shift and go to state 19
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
+    declare                        shift and go to state 38
+    deffunc                        shift and go to state 22
     var                            shift and go to state 48
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
-    if                             shift and go to state 23
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
     print                          shift and go to state 25
-    alg3                           shift and go to state 26
-
-state 53
-
-    (3) block -> LBRACE inblock . RBRACE
-    (6) inblock -> inblock . divider metaexpr
-    (8) inblock -> inblock . divider
-    (16) divider -> . DIVIDER
-
-    RBRACE          shift and go to state 78
-    DIVIDER         shift and go to state 19
-
-    divider                        shift and go to state 52
-
-state 54
-
-    (10) module -> MODULE WORD . COLON dblock
-
-    COLON           shift and go to state 79
-
+    alg2                           shift and go to state 31
+    float                          shift and go to state 27
+    block                          shift and go to state 6
+    int                            shift and go to state 29
 
 state 55
 
-    (7) inblock -> divider inblock .
-    (6) inblock -> inblock . divider metaexpr
-    (8) inblock -> inblock . divider
-    (16) divider -> . DIVIDER
-
-  ! shift/reduce conflict for DIVIDER resolved as shift
-    $end            reduce using rule 7 (inblock -> divider inblock .)
-    RBRACE          reduce using rule 7 (inblock -> divider inblock .)
-    DIVIDER         shift and go to state 19
-
-  ! DIVIDER         [ reduce using rule 7 (inblock -> divider inblock .) ]
-
-    divider                        shift and go to state 52
-
-state 56
-
-    (33) equal -> WORD . EQUALS expr
-    (18) func -> WORD . LPAREN args RPAREN
-    (55) var -> WORD .
-
-    EQUALS          shift and go to state 62
-    LPAREN          shift and go to state 63
-    DIVIDER         reduce using rule 55 (var -> WORD .)
-    $end            reduce using rule 55 (var -> WORD .)
-    RBRACE          reduce using rule 55 (var -> WORD .)
-    DPROD           reduce using rule 55 (var -> WORD .)
-    DIVMUL          reduce using rule 55 (var -> WORD .)
-    PLUSMINUS       reduce using rule 55 (var -> WORD .)
-    RBRACKET        reduce using rule 55 (var -> WORD .)
-    COMMA           reduce using rule 55 (var -> WORD .)
-    RPAREN          reduce using rule 55 (var -> WORD .)
-    QUESTION        reduce using rule 55 (var -> WORD .)
-    COLON           reduce using rule 55 (var -> WORD .)
-
-
-state 57
-
-    (15) if -> IF expr . QUESTION expr COLON expr
-
-    QUESTION        shift and go to state 80
-
-
-state 58
-
-    (52) downlevel -> DOWNLEVEL expr .
-
-    DIVIDER         reduce using rule 52 (downlevel -> DOWNLEVEL expr .)
-    $end            reduce using rule 52 (downlevel -> DOWNLEVEL expr .)
-    RBRACE          reduce using rule 52 (downlevel -> DOWNLEVEL expr .)
-
-
-state 59
-
-    (9) print -> PRINT expr .
-
-    QUESTION        reduce using rule 9 (print -> PRINT expr .)
-    COMMA           reduce using rule 9 (print -> PRINT expr .)
-    RPAREN          reduce using rule 9 (print -> PRINT expr .)
-    DIVIDER         reduce using rule 9 (print -> PRINT expr .)
-    $end            reduce using rule 9 (print -> PRINT expr .)
-    RBRACE          reduce using rule 9 (print -> PRINT expr .)
-    COLON           reduce using rule 9 (print -> PRINT expr .)
-    RBRACKET        reduce using rule 9 (print -> PRINT expr .)
-
-
-state 60
-
-    (63) alg2 -> alg2 DPROD . alg3
-    (64) alg3 -> . exprnoalg
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
+    (60) alg0 -> alg0 PLUSMINUS . alg1
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
     (18) func -> . WORD LPAREN args RPAREN
     (3) block -> . LBRACE inblock RBRACE
     (28) list -> . LBRACKET comms RBRACKET
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
 
-    WORD            shift and go to state 72
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    WORD            shift and go to state 63
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
-    term                           shift and go to state 10
-    exprnoalg                      shift and go to state 74
-    str                            shift and go to state 11
-    float                          shift and go to state 28
+    term                           shift and go to state 1
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    alg3                           shift and go to state 21
     var                            shift and go to state 48
-    int                            shift and go to state 15
-    list                           shift and go to state 38
-    func                           shift and go to state 20
-    block                          shift and go to state 30
-    alg3                           shift and go to state 81
+    exprnoalg                      shift and go to state 64
+    alg1                           shift and go to state 80
+    int                            shift and go to state 29
+    alg2                           shift and go to state 31
+    block                          shift and go to state 6
+    func                           shift and go to state 26
+    float                          shift and go to state 27
 
-state 61
+state 56
 
-    (45) return -> RETURN expr .
+    (9) print -> PRINT expr .
 
-    DIVIDER         reduce using rule 45 (return -> RETURN expr .)
-    $end            reduce using rule 45 (return -> RETURN expr .)
-    RBRACE          reduce using rule 45 (return -> RETURN expr .)
-    RBRACKET        reduce using rule 45 (return -> RETURN expr .)
-    COMMA           reduce using rule 45 (return -> RETURN expr .)
-    RPAREN          reduce using rule 45 (return -> RETURN expr .)
-    COLON           reduce using rule 45 (return -> RETURN expr .)
-    QUESTION        reduce using rule 45 (return -> RETURN expr .)
+    DIVIDER         reduce using rule 9 (print -> PRINT expr .)
+    $end            reduce using rule 9 (print -> PRINT expr .)
+    RBRACE          reduce using rule 9 (print -> PRINT expr .)
+    COMMA           reduce using rule 9 (print -> PRINT expr .)
+    RPAREN          reduce using rule 9 (print -> PRINT expr .)
+    RBRACKET        reduce using rule 9 (print -> PRINT expr .)
+    QUESTION        reduce using rule 9 (print -> PRINT expr .)
+    COLON           reduce using rule 9 (print -> PRINT expr .)
 
 
-state 62
+state 57
 
     (33) equal -> WORD EQUALS . expr
     (34) expr -> . exprnoalg
     (35) expr -> . alg0
     (36) expr -> . print
     (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
     (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
     (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
     (18) func -> . WORD LPAREN args RPAREN
     (3) block -> . LBRACE inblock RBRACE
     (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
 
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    WORD            shift and go to state 56
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    WORD            shift and go to state 52
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    block                          shift and go to state 30
-    alg0                           shift and go to state 3
-    expr                           shift and go to state 82
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    exprnoalg                      shift and go to state 13
+    term                           shift and go to state 1
+    alg2                           shift and go to state 31
+    alg0                           shift and go to state 4
+    equal                          shift and go to state 35
+    block                          shift and go to state 6
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    return                         shift and go to state 18
+    expr                           shift and go to state 81
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
     var                            shift and go to state 48
-    int                            shift and go to state 15
-    equal                          shift and go to state 43
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
     print                          shift and go to state 25
-    alg3                           shift and go to state 26
+    func                           shift and go to state 26
+    float                          shift and go to state 27
+    int                            shift and go to state 29
 
-state 63
+state 58
 
     (18) func -> WORD LPAREN . args RPAREN
     (29) args -> .
@@ -1927,380 +1891,497 @@ state 63
     (35) expr -> . alg0
     (36) expr -> . print
     (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
     (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
     (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
     (18) func -> . WORD LPAREN args RPAREN
     (3) block -> . LBRACE inblock RBRACE
     (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
 
     RPAREN          reduce using rule 29 (args -> .)
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    WORD            shift and go to state 56
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    WORD            shift and go to state 52
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    variables                      shift and go to state 32
-    alg0                           shift and go to state 3
-    comms                          shift and go to state 83
-    expr                           shift and go to state 71
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    exprnoalg                      shift and go to state 13
+    term                           shift and go to state 1
+    alg0                           shift and go to state 4
+    import                         shift and go to state 40
+    equal                          shift and go to state 35
+    block                          shift and go to state 6
+    variables                      shift and go to state 39
+    func                           shift and go to state 26
+    return                         shift and go to state 18
+    expr                           shift and go to state 73
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
+    args                           shift and go to state 82
     var                            shift and go to state 48
-    int                            shift and go to state 15
-    equal                          shift and go to state 43
-    func                           shift and go to state 20
-    block                          shift and go to state 30
-    return                         shift and go to state 22
-    args                           shift and go to state 84
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
     print                          shift and go to state 25
-    alg3                           shift and go to state 26
+    alg2                           shift and go to state 31
+    float                          shift and go to state 27
+    comms                          shift and go to state 83
+    int                            shift and go to state 29
 
-state 64
+state 59
 
     (14) declare -> WORD COLON . expr
     (34) expr -> . exprnoalg
     (35) expr -> . alg0
     (36) expr -> . print
     (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
     (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
     (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
     (18) func -> . WORD LPAREN args RPAREN
     (3) block -> . LBRACE inblock RBRACE
     (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
 
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    WORD            shift and go to state 56
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    WORD            shift and go to state 52
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    block                          shift and go to state 30
-    alg0                           shift and go to state 3
-    expr                           shift and go to state 85
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    exprnoalg                      shift and go to state 13
+    term                           shift and go to state 1
+    alg2                           shift and go to state 31
+    alg0                           shift and go to state 4
+    equal                          shift and go to state 35
+    block                          shift and go to state 6
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    return                         shift and go to state 18
+    expr                           shift and go to state 84
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
     var                            shift and go to state 48
-    int                            shift and go to state 15
-    equal                          shift and go to state 43
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
     print                          shift and go to state 25
-    alg3                           shift and go to state 26
+    func                           shift and go to state 26
+    float                          shift and go to state 27
+    int                            shift and go to state 29
+
+state 60
+
+    (12) application -> APPLICATION WORD . COLON dblock
+
+    COLON           shift and go to state 85
+
+
+state 61
+
+    (52) python -> PYTHON str .
+
+    COMMA           reduce using rule 52 (python -> PYTHON str .)
+    RPAREN          reduce using rule 52 (python -> PYTHON str .)
+    DIVIDER         reduce using rule 52 (python -> PYTHON str .)
+    $end            reduce using rule 52 (python -> PYTHON str .)
+    RBRACE          reduce using rule 52 (python -> PYTHON str .)
+    RBRACKET        reduce using rule 52 (python -> PYTHON str .)
+    QUESTION        reduce using rule 52 (python -> PYTHON str .)
+    COLON           reduce using rule 52 (python -> PYTHON str .)
+
+
+state 62
+
+    (7) inblock -> divider inblock .
+    (6) inblock -> inblock . divider metaexpr
+    (8) inblock -> inblock . divider
+    (16) divider -> . DIVIDER
+
+  ! shift/reduce conflict for DIVIDER resolved as shift
+    $end            reduce using rule 7 (inblock -> divider inblock .)
+    RBRACE          reduce using rule 7 (inblock -> divider inblock .)
+    DIVIDER         shift and go to state 44
+
+  ! DIVIDER         [ reduce using rule 7 (inblock -> divider inblock .) ]
+
+    divider                        shift and go to state 54
+
+state 63
+
+    (18) func -> WORD . LPAREN args RPAREN
+    (57) var -> WORD .
+
+    LPAREN          shift and go to state 58
+    DPROD           reduce using rule 57 (var -> WORD .)
+    DIVMUL          reduce using rule 57 (var -> WORD .)
+    PLUSMINUS       reduce using rule 57 (var -> WORD .)
+    DIVIDER         reduce using rule 57 (var -> WORD .)
+    $end            reduce using rule 57 (var -> WORD .)
+    RBRACE          reduce using rule 57 (var -> WORD .)
+    RBRACKET        reduce using rule 57 (var -> WORD .)
+    COMMA           reduce using rule 57 (var -> WORD .)
+    QUESTION        reduce using rule 57 (var -> WORD .)
+    RPAREN          reduce using rule 57 (var -> WORD .)
+    COLON           reduce using rule 57 (var -> WORD .)
+
+
+state 64
+
+    (66) alg3 -> exprnoalg .
+
+    DPROD           reduce using rule 66 (alg3 -> exprnoalg .)
+    DIVMUL          reduce using rule 66 (alg3 -> exprnoalg .)
+    PLUSMINUS       reduce using rule 66 (alg3 -> exprnoalg .)
+    DIVIDER         reduce using rule 66 (alg3 -> exprnoalg .)
+    $end            reduce using rule 66 (alg3 -> exprnoalg .)
+    RBRACE          reduce using rule 66 (alg3 -> exprnoalg .)
+    RBRACKET        reduce using rule 66 (alg3 -> exprnoalg .)
+    COMMA           reduce using rule 66 (alg3 -> exprnoalg .)
+    QUESTION        reduce using rule 66 (alg3 -> exprnoalg .)
+    RPAREN          reduce using rule 66 (alg3 -> exprnoalg .)
+    COLON           reduce using rule 66 (alg3 -> exprnoalg .)
+
 
 state 65
+
+    (61) alg0 -> PLUSMINUS alg1 .
+    (63) alg1 -> alg1 . DIVMUL alg2
+
+    PLUSMINUS       reduce using rule 61 (alg0 -> PLUSMINUS alg1 .)
+    DIVIDER         reduce using rule 61 (alg0 -> PLUSMINUS alg1 .)
+    $end            reduce using rule 61 (alg0 -> PLUSMINUS alg1 .)
+    RBRACE          reduce using rule 61 (alg0 -> PLUSMINUS alg1 .)
+    RBRACKET        reduce using rule 61 (alg0 -> PLUSMINUS alg1 .)
+    COMMA           reduce using rule 61 (alg0 -> PLUSMINUS alg1 .)
+    QUESTION        reduce using rule 61 (alg0 -> PLUSMINUS alg1 .)
+    RPAREN          reduce using rule 61 (alg0 -> PLUSMINUS alg1 .)
+    COLON           reduce using rule 61 (alg0 -> PLUSMINUS alg1 .)
+    DIVMUL          shift and go to state 69
+
+
+state 66
 
     (13) define -> DEFINE WORD . expr
     (34) expr -> . exprnoalg
     (35) expr -> . alg0
     (36) expr -> . print
     (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
     (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
     (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
     (18) func -> . WORD LPAREN args RPAREN
     (3) block -> . LBRACE inblock RBRACE
     (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
 
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    WORD            shift and go to state 56
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    WORD            shift and go to state 52
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    block                          shift and go to state 30
-    alg0                           shift and go to state 3
+    term                           shift and go to state 1
+    alg2                           shift and go to state 31
+    alg0                           shift and go to state 4
+    equal                          shift and go to state 35
+    block                          shift and go to state 6
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    return                         shift and go to state 18
     expr                           shift and go to state 86
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    exprnoalg                      shift and go to state 13
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
     var                            shift and go to state 48
-    int                            shift and go to state 15
-    equal                          shift and go to state 43
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
     print                          shift and go to state 25
-    alg3                           shift and go to state 26
+    func                           shift and go to state 26
+    float                          shift and go to state 27
+    int                            shift and go to state 29
 
-state 66
+state 67
 
-    (11) deffunc -> DEFFUNC func . COLON dblock
+    (10) module -> MODULE WORD . COLON dblock
 
     COLON           shift and go to state 87
 
 
-state 67
-
-    (18) func -> WORD . LPAREN args RPAREN
-
-    LPAREN          shift and go to state 63
-
-
 state 68
 
-    (61) alg1 -> alg1 DIVMUL . alg2
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
-    (18) func -> . WORD LPAREN args RPAREN
-    (3) block -> . LBRACE inblock RBRACE
-    (28) list -> . LBRACKET comms RBRACKET
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
+    (3) block -> LBRACE inblock . RBRACE
+    (6) inblock -> inblock . divider metaexpr
+    (8) inblock -> inblock . divider
+    (16) divider -> . DIVIDER
 
-    WORD            shift and go to state 72
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    RBRACE          shift and go to state 88
+    DIVIDER         shift and go to state 44
 
-    alg2                           shift and go to state 88
-    term                           shift and go to state 10
-    exprnoalg                      shift and go to state 74
-    str                            shift and go to state 11
-    float                          shift and go to state 28
-    var                            shift and go to state 48
-    int                            shift and go to state 15
-    list                           shift and go to state 38
-    func                           shift and go to state 20
-    block                          shift and go to state 30
-    alg3                           shift and go to state 26
+    divider                        shift and go to state 54
 
 state 69
 
-    (12) application -> APPLICATION WORD . COLON dblock
+    (63) alg1 -> alg1 DIVMUL . alg2
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
+    (18) func -> . WORD LPAREN args RPAREN
+    (3) block -> . LBRACE inblock RBRACE
+    (28) list -> . LBRACKET comms RBRACKET
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
 
-    COLON           shift and go to state 89
+    WORD            shift and go to state 63
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
+    term                           shift and go to state 1
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    alg3                           shift and go to state 21
+    var                            shift and go to state 48
+    exprnoalg                      shift and go to state 64
+    int                            shift and go to state 29
+    alg2                           shift and go to state 89
+    block                          shift and go to state 6
+    func                           shift and go to state 26
+    float                          shift and go to state 27
 
 state 70
+
+    (53) import -> IMPORT str .
+
+    COLON           reduce using rule 53 (import -> IMPORT str .)
+    DIVIDER         reduce using rule 53 (import -> IMPORT str .)
+    $end            reduce using rule 53 (import -> IMPORT str .)
+    RBRACKET        reduce using rule 53 (import -> IMPORT str .)
+    COMMA           reduce using rule 53 (import -> IMPORT str .)
+    RPAREN          reduce using rule 53 (import -> IMPORT str .)
+    RBRACE          reduce using rule 53 (import -> IMPORT str .)
+    QUESTION        reduce using rule 53 (import -> IMPORT str .)
+
+
+state 71
+
+    (65) alg2 -> alg2 DPROD . alg3
+    (66) alg3 -> . exprnoalg
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
+    (18) func -> . WORD LPAREN args RPAREN
+    (3) block -> . LBRACE inblock RBRACE
+    (28) list -> . LBRACKET comms RBRACKET
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+
+    WORD            shift and go to state 63
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
+
+    term                           shift and go to state 1
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    alg3                           shift and go to state 90
+    var                            shift and go to state 48
+    exprnoalg                      shift and go to state 64
+    int                            shift and go to state 29
+    block                          shift and go to state 6
+    func                           shift and go to state 26
+    float                          shift and go to state 27
+
+state 72
+
+    (58) variables -> VARIABLES expr .
+
+    DIVIDER         reduce using rule 58 (variables -> VARIABLES expr .)
+    $end            reduce using rule 58 (variables -> VARIABLES expr .)
+    RBRACE          reduce using rule 58 (variables -> VARIABLES expr .)
+    QUESTION        reduce using rule 58 (variables -> VARIABLES expr .)
+    RBRACKET        reduce using rule 58 (variables -> VARIABLES expr .)
+    COMMA           reduce using rule 58 (variables -> VARIABLES expr .)
+    RPAREN          reduce using rule 58 (variables -> VARIABLES expr .)
+    COLON           reduce using rule 58 (variables -> VARIABLES expr .)
+
+
+state 73
+
+    (31) comms -> expr .
+
+    COMMA           reduce using rule 31 (comms -> expr .)
+    RPAREN          reduce using rule 31 (comms -> expr .)
+    RBRACKET        reduce using rule 31 (comms -> expr .)
+
+
+state 74
 
     (28) list -> LBRACKET comms . RBRACKET
     (32) comms -> comms . COMMA expr
 
     RBRACKET        shift and go to state 91
-    COMMA           shift and go to state 90
-
-
-state 71
-
-    (31) comms -> expr .
-
-    RBRACKET        reduce using rule 31 (comms -> expr .)
-    COMMA           reduce using rule 31 (comms -> expr .)
-    RPAREN          reduce using rule 31 (comms -> expr .)
-
-
-state 72
-
-    (18) func -> WORD . LPAREN args RPAREN
-    (55) var -> WORD .
-
-    LPAREN          shift and go to state 63
-    DPROD           reduce using rule 55 (var -> WORD .)
-    DIVMUL          reduce using rule 55 (var -> WORD .)
-    PLUSMINUS       reduce using rule 55 (var -> WORD .)
-    DIVIDER         reduce using rule 55 (var -> WORD .)
-    $end            reduce using rule 55 (var -> WORD .)
-    RBRACE          reduce using rule 55 (var -> WORD .)
-    QUESTION        reduce using rule 55 (var -> WORD .)
-    RBRACKET        reduce using rule 55 (var -> WORD .)
-    COMMA           reduce using rule 55 (var -> WORD .)
-    RPAREN          reduce using rule 55 (var -> WORD .)
-    COLON           reduce using rule 55 (var -> WORD .)
-
-
-state 73
-
-    (59) alg0 -> PLUSMINUS alg1 .
-    (61) alg1 -> alg1 . DIVMUL alg2
-
-    PLUSMINUS       reduce using rule 59 (alg0 -> PLUSMINUS alg1 .)
-    QUESTION        reduce using rule 59 (alg0 -> PLUSMINUS alg1 .)
-    DIVIDER         reduce using rule 59 (alg0 -> PLUSMINUS alg1 .)
-    $end            reduce using rule 59 (alg0 -> PLUSMINUS alg1 .)
-    RBRACE          reduce using rule 59 (alg0 -> PLUSMINUS alg1 .)
-    COMMA           reduce using rule 59 (alg0 -> PLUSMINUS alg1 .)
-    RPAREN          reduce using rule 59 (alg0 -> PLUSMINUS alg1 .)
-    RBRACKET        reduce using rule 59 (alg0 -> PLUSMINUS alg1 .)
-    COLON           reduce using rule 59 (alg0 -> PLUSMINUS alg1 .)
-    DIVMUL          shift and go to state 68
-
-
-state 74
-
-    (64) alg3 -> exprnoalg .
-
-    DPROD           reduce using rule 64 (alg3 -> exprnoalg .)
-    DIVMUL          reduce using rule 64 (alg3 -> exprnoalg .)
-    PLUSMINUS       reduce using rule 64 (alg3 -> exprnoalg .)
-    DIVIDER         reduce using rule 64 (alg3 -> exprnoalg .)
-    $end            reduce using rule 64 (alg3 -> exprnoalg .)
-    RBRACE          reduce using rule 64 (alg3 -> exprnoalg .)
-    QUESTION        reduce using rule 64 (alg3 -> exprnoalg .)
-    RBRACKET        reduce using rule 64 (alg3 -> exprnoalg .)
-    COMMA           reduce using rule 64 (alg3 -> exprnoalg .)
-    RPAREN          reduce using rule 64 (alg3 -> exprnoalg .)
-    COLON           reduce using rule 64 (alg3 -> exprnoalg .)
+    COMMA           shift and go to state 92
 
 
 state 75
 
-    (56) variables -> VARIABLES expr .
+    (11) deffunc -> DEFFUNC func . COLON dblock
 
-    RBRACKET        reduce using rule 56 (variables -> VARIABLES expr .)
-    COMMA           reduce using rule 56 (variables -> VARIABLES expr .)
-    DIVIDER         reduce using rule 56 (variables -> VARIABLES expr .)
-    $end            reduce using rule 56 (variables -> VARIABLES expr .)
-    RBRACE          reduce using rule 56 (variables -> VARIABLES expr .)
-    QUESTION        reduce using rule 56 (variables -> VARIABLES expr .)
-    RPAREN          reduce using rule 56 (variables -> VARIABLES expr .)
-    COLON           reduce using rule 56 (variables -> VARIABLES expr .)
+    COLON           shift and go to state 93
 
 
 state 76
 
-    (58) alg0 -> alg0 PLUSMINUS alg1 .
-    (61) alg1 -> alg1 . DIVMUL alg2
+    (18) func -> WORD . LPAREN args RPAREN
 
-    PLUSMINUS       reduce using rule 58 (alg0 -> alg0 PLUSMINUS alg1 .)
-    QUESTION        reduce using rule 58 (alg0 -> alg0 PLUSMINUS alg1 .)
-    DIVIDER         reduce using rule 58 (alg0 -> alg0 PLUSMINUS alg1 .)
-    $end            reduce using rule 58 (alg0 -> alg0 PLUSMINUS alg1 .)
-    RBRACE          reduce using rule 58 (alg0 -> alg0 PLUSMINUS alg1 .)
-    COMMA           reduce using rule 58 (alg0 -> alg0 PLUSMINUS alg1 .)
-    RPAREN          reduce using rule 58 (alg0 -> alg0 PLUSMINUS alg1 .)
-    RBRACKET        reduce using rule 58 (alg0 -> alg0 PLUSMINUS alg1 .)
-    COLON           reduce using rule 58 (alg0 -> alg0 PLUSMINUS alg1 .)
-    DIVMUL          shift and go to state 68
+    LPAREN          shift and go to state 58
 
 
 state 77
+
+    (46) return -> RETURN expr .
+
+    DIVIDER         reduce using rule 46 (return -> RETURN expr .)
+    $end            reduce using rule 46 (return -> RETURN expr .)
+    RBRACE          reduce using rule 46 (return -> RETURN expr .)
+    RBRACKET        reduce using rule 46 (return -> RETURN expr .)
+    COMMA           reduce using rule 46 (return -> RETURN expr .)
+    QUESTION        reduce using rule 46 (return -> RETURN expr .)
+    RPAREN          reduce using rule 46 (return -> RETURN expr .)
+    COLON           reduce using rule 46 (return -> RETURN expr .)
+
+
+state 78
+
+    (15) if -> IF expr . QUESTION expr COLON expr
+
+    QUESTION        shift and go to state 94
+
+
+state 79
 
     (6) inblock -> inblock divider metaexpr .
 
@@ -2309,138 +2390,42 @@ state 77
     RBRACE          reduce using rule 6 (inblock -> inblock divider metaexpr .)
 
 
-state 78
-
-    (3) block -> LBRACE inblock RBRACE .
-
-    DIVIDER         reduce using rule 3 (block -> LBRACE inblock RBRACE .)
-    $end            reduce using rule 3 (block -> LBRACE inblock RBRACE .)
-    RBRACE          reduce using rule 3 (block -> LBRACE inblock RBRACE .)
-    DPROD           reduce using rule 3 (block -> LBRACE inblock RBRACE .)
-    DIVMUL          reduce using rule 3 (block -> LBRACE inblock RBRACE .)
-    PLUSMINUS       reduce using rule 3 (block -> LBRACE inblock RBRACE .)
-    COMMA           reduce using rule 3 (block -> LBRACE inblock RBRACE .)
-    RPAREN          reduce using rule 3 (block -> LBRACE inblock RBRACE .)
-    COLON           reduce using rule 3 (block -> LBRACE inblock RBRACE .)
-    RBRACKET        reduce using rule 3 (block -> LBRACE inblock RBRACE .)
-    QUESTION        reduce using rule 3 (block -> LBRACE inblock RBRACE .)
-
-
-state 79
-
-    (10) module -> MODULE WORD COLON . dblock
-    (1) dblock -> . block
-    (2) dblock -> . divider block
-    (3) block -> . LBRACE inblock RBRACE
-    (16) divider -> . DIVIDER
-
-    LBRACE          shift and go to state 6
-    DIVIDER         shift and go to state 19
-
-    dblock                         shift and go to state 92
-    divider                        shift and go to state 94
-    block                          shift and go to state 93
-
 state 80
 
-    (15) if -> IF expr QUESTION . expr COLON expr
-    (34) expr -> . exprnoalg
-    (35) expr -> . alg0
-    (36) expr -> . print
-    (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
-    (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
-    (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
-    (18) func -> . WORD LPAREN args RPAREN
-    (3) block -> . LBRACE inblock RBRACE
-    (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (60) alg0 -> alg0 PLUSMINUS alg1 .
+    (63) alg1 -> alg1 . DIVMUL alg2
 
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    WORD            shift and go to state 56
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    PLUSMINUS       reduce using rule 60 (alg0 -> alg0 PLUSMINUS alg1 .)
+    DIVIDER         reduce using rule 60 (alg0 -> alg0 PLUSMINUS alg1 .)
+    $end            reduce using rule 60 (alg0 -> alg0 PLUSMINUS alg1 .)
+    RBRACE          reduce using rule 60 (alg0 -> alg0 PLUSMINUS alg1 .)
+    RBRACKET        reduce using rule 60 (alg0 -> alg0 PLUSMINUS alg1 .)
+    COMMA           reduce using rule 60 (alg0 -> alg0 PLUSMINUS alg1 .)
+    QUESTION        reduce using rule 60 (alg0 -> alg0 PLUSMINUS alg1 .)
+    RPAREN          reduce using rule 60 (alg0 -> alg0 PLUSMINUS alg1 .)
+    COLON           reduce using rule 60 (alg0 -> alg0 PLUSMINUS alg1 .)
+    DIVMUL          shift and go to state 69
 
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    block                          shift and go to state 30
-    alg0                           shift and go to state 3
-    expr                           shift and go to state 95
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    exprnoalg                      shift and go to state 13
-    var                            shift and go to state 48
-    int                            shift and go to state 15
-    equal                          shift and go to state 43
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
-    print                          shift and go to state 25
-    alg3                           shift and go to state 26
 
 state 81
 
-    (63) alg2 -> alg2 DPROD alg3 .
+    (33) equal -> WORD EQUALS expr .
 
-    DPROD           reduce using rule 63 (alg2 -> alg2 DPROD alg3 .)
-    DIVMUL          reduce using rule 63 (alg2 -> alg2 DPROD alg3 .)
-    PLUSMINUS       reduce using rule 63 (alg2 -> alg2 DPROD alg3 .)
-    DIVIDER         reduce using rule 63 (alg2 -> alg2 DPROD alg3 .)
-    $end            reduce using rule 63 (alg2 -> alg2 DPROD alg3 .)
-    RBRACE          reduce using rule 63 (alg2 -> alg2 DPROD alg3 .)
-    QUESTION        reduce using rule 63 (alg2 -> alg2 DPROD alg3 .)
-    RBRACKET        reduce using rule 63 (alg2 -> alg2 DPROD alg3 .)
-    COMMA           reduce using rule 63 (alg2 -> alg2 DPROD alg3 .)
-    RPAREN          reduce using rule 63 (alg2 -> alg2 DPROD alg3 .)
-    COLON           reduce using rule 63 (alg2 -> alg2 DPROD alg3 .)
+    RBRACE          reduce using rule 33 (equal -> WORD EQUALS expr .)
+    DIVIDER         reduce using rule 33 (equal -> WORD EQUALS expr .)
+    $end            reduce using rule 33 (equal -> WORD EQUALS expr .)
+    RBRACKET        reduce using rule 33 (equal -> WORD EQUALS expr .)
+    COMMA           reduce using rule 33 (equal -> WORD EQUALS expr .)
+    QUESTION        reduce using rule 33 (equal -> WORD EQUALS expr .)
+    RPAREN          reduce using rule 33 (equal -> WORD EQUALS expr .)
+    COLON           reduce using rule 33 (equal -> WORD EQUALS expr .)
 
 
 state 82
 
-    (33) equal -> WORD EQUALS expr .
+    (18) func -> WORD LPAREN args . RPAREN
 
-    RBRACKET        reduce using rule 33 (equal -> WORD EQUALS expr .)
-    COMMA           reduce using rule 33 (equal -> WORD EQUALS expr .)
-    RPAREN          reduce using rule 33 (equal -> WORD EQUALS expr .)
-    DIVIDER         reduce using rule 33 (equal -> WORD EQUALS expr .)
-    $end            reduce using rule 33 (equal -> WORD EQUALS expr .)
-    RBRACE          reduce using rule 33 (equal -> WORD EQUALS expr .)
-    COLON           reduce using rule 33 (equal -> WORD EQUALS expr .)
-    QUESTION        reduce using rule 33 (equal -> WORD EQUALS expr .)
+    RPAREN          shift and go to state 95
 
 
 state 83
@@ -2449,24 +2434,32 @@ state 83
     (32) comms -> comms . COMMA expr
 
     RPAREN          reduce using rule 30 (args -> comms .)
-    COMMA           shift and go to state 90
+    COMMA           shift and go to state 92
 
 
 state 84
 
-    (18) func -> WORD LPAREN args . RPAREN
+    (14) declare -> WORD COLON expr .
 
-    RPAREN          shift and go to state 96
+    RBRACE          reduce using rule 14 (declare -> WORD COLON expr .)
+    DIVIDER         reduce using rule 14 (declare -> WORD COLON expr .)
+    $end            reduce using rule 14 (declare -> WORD COLON expr .)
 
 
 state 85
 
-    (14) declare -> WORD COLON expr .
+    (12) application -> APPLICATION WORD COLON . dblock
+    (1) dblock -> . block
+    (2) dblock -> . divider block
+    (3) block -> . LBRACE inblock RBRACE
+    (16) divider -> . DIVIDER
 
-    DIVIDER         reduce using rule 14 (declare -> WORD COLON expr .)
-    $end            reduce using rule 14 (declare -> WORD COLON expr .)
-    RBRACE          reduce using rule 14 (declare -> WORD COLON expr .)
+    LBRACE          shift and go to state 20
+    DIVIDER         shift and go to state 44
 
+    divider                        shift and go to state 98
+    dblock                         shift and go to state 96
+    block                          shift and go to state 97
 
 state 86
 
@@ -2479,122 +2472,70 @@ state 86
 
 state 87
 
-    (11) deffunc -> DEFFUNC func COLON . dblock
+    (10) module -> MODULE WORD COLON . dblock
     (1) dblock -> . block
     (2) dblock -> . divider block
     (3) block -> . LBRACE inblock RBRACE
     (16) divider -> . DIVIDER
 
-    LBRACE          shift and go to state 6
-    DIVIDER         shift and go to state 19
+    LBRACE          shift and go to state 20
+    DIVIDER         shift and go to state 44
 
-    dblock                         shift and go to state 97
-    divider                        shift and go to state 94
-    block                          shift and go to state 93
+    divider                        shift and go to state 98
+    dblock                         shift and go to state 99
+    block                          shift and go to state 97
 
 state 88
 
-    (61) alg1 -> alg1 DIVMUL alg2 .
-    (63) alg2 -> alg2 . DPROD alg3
+    (3) block -> LBRACE inblock RBRACE .
 
-    DIVMUL          reduce using rule 61 (alg1 -> alg1 DIVMUL alg2 .)
-    PLUSMINUS       reduce using rule 61 (alg1 -> alg1 DIVMUL alg2 .)
-    QUESTION        reduce using rule 61 (alg1 -> alg1 DIVMUL alg2 .)
-    DIVIDER         reduce using rule 61 (alg1 -> alg1 DIVMUL alg2 .)
-    $end            reduce using rule 61 (alg1 -> alg1 DIVMUL alg2 .)
-    RBRACE          reduce using rule 61 (alg1 -> alg1 DIVMUL alg2 .)
-    RBRACKET        reduce using rule 61 (alg1 -> alg1 DIVMUL alg2 .)
-    COMMA           reduce using rule 61 (alg1 -> alg1 DIVMUL alg2 .)
-    RPAREN          reduce using rule 61 (alg1 -> alg1 DIVMUL alg2 .)
-    COLON           reduce using rule 61 (alg1 -> alg1 DIVMUL alg2 .)
-    DPROD           shift and go to state 60
+    DPROD           reduce using rule 3 (block -> LBRACE inblock RBRACE .)
+    DIVMUL          reduce using rule 3 (block -> LBRACE inblock RBRACE .)
+    PLUSMINUS       reduce using rule 3 (block -> LBRACE inblock RBRACE .)
+    DIVIDER         reduce using rule 3 (block -> LBRACE inblock RBRACE .)
+    $end            reduce using rule 3 (block -> LBRACE inblock RBRACE .)
+    RBRACE          reduce using rule 3 (block -> LBRACE inblock RBRACE .)
+    RBRACKET        reduce using rule 3 (block -> LBRACE inblock RBRACE .)
+    COMMA           reduce using rule 3 (block -> LBRACE inblock RBRACE .)
+    QUESTION        reduce using rule 3 (block -> LBRACE inblock RBRACE .)
+    RPAREN          reduce using rule 3 (block -> LBRACE inblock RBRACE .)
+    COLON           reduce using rule 3 (block -> LBRACE inblock RBRACE .)
 
 
 state 89
 
-    (12) application -> APPLICATION WORD COLON . dblock
-    (1) dblock -> . block
-    (2) dblock -> . divider block
-    (3) block -> . LBRACE inblock RBRACE
-    (16) divider -> . DIVIDER
+    (63) alg1 -> alg1 DIVMUL alg2 .
+    (65) alg2 -> alg2 . DPROD alg3
 
-    LBRACE          shift and go to state 6
-    DIVIDER         shift and go to state 19
+    DIVMUL          reduce using rule 63 (alg1 -> alg1 DIVMUL alg2 .)
+    PLUSMINUS       reduce using rule 63 (alg1 -> alg1 DIVMUL alg2 .)
+    DIVIDER         reduce using rule 63 (alg1 -> alg1 DIVMUL alg2 .)
+    $end            reduce using rule 63 (alg1 -> alg1 DIVMUL alg2 .)
+    RBRACE          reduce using rule 63 (alg1 -> alg1 DIVMUL alg2 .)
+    RBRACKET        reduce using rule 63 (alg1 -> alg1 DIVMUL alg2 .)
+    COMMA           reduce using rule 63 (alg1 -> alg1 DIVMUL alg2 .)
+    QUESTION        reduce using rule 63 (alg1 -> alg1 DIVMUL alg2 .)
+    RPAREN          reduce using rule 63 (alg1 -> alg1 DIVMUL alg2 .)
+    COLON           reduce using rule 63 (alg1 -> alg1 DIVMUL alg2 .)
+    DPROD           shift and go to state 71
 
-    dblock                         shift and go to state 98
-    divider                        shift and go to state 94
-    block                          shift and go to state 93
 
 state 90
 
-    (32) comms -> comms COMMA . expr
-    (34) expr -> . exprnoalg
-    (35) expr -> . alg0
-    (36) expr -> . print
-    (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
-    (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
-    (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
-    (18) func -> . WORD LPAREN args RPAREN
-    (3) block -> . LBRACE inblock RBRACE
-    (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (65) alg2 -> alg2 DPROD alg3 .
 
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    WORD            shift and go to state 56
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    DPROD           reduce using rule 65 (alg2 -> alg2 DPROD alg3 .)
+    DIVMUL          reduce using rule 65 (alg2 -> alg2 DPROD alg3 .)
+    PLUSMINUS       reduce using rule 65 (alg2 -> alg2 DPROD alg3 .)
+    DIVIDER         reduce using rule 65 (alg2 -> alg2 DPROD alg3 .)
+    $end            reduce using rule 65 (alg2 -> alg2 DPROD alg3 .)
+    RBRACE          reduce using rule 65 (alg2 -> alg2 DPROD alg3 .)
+    RBRACKET        reduce using rule 65 (alg2 -> alg2 DPROD alg3 .)
+    COMMA           reduce using rule 65 (alg2 -> alg2 DPROD alg3 .)
+    QUESTION        reduce using rule 65 (alg2 -> alg2 DPROD alg3 .)
+    RPAREN          reduce using rule 65 (alg2 -> alg2 DPROD alg3 .)
+    COLON           reduce using rule 65 (alg2 -> alg2 DPROD alg3 .)
 
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    variables                      shift and go to state 32
-    alg0                           shift and go to state 3
-    expr                           shift and go to state 99
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    exprnoalg                      shift and go to state 13
-    var                            shift and go to state 48
-    int                            shift and go to state 15
-    equal                          shift and go to state 43
-    func                           shift and go to state 20
-    block                          shift and go to state 30
-    return                         shift and go to state 22
-    print                          shift and go to state 25
-    alg3                           shift and go to state 26
 
 state 91
 
@@ -2603,26 +2544,208 @@ state 91
     DIVIDER         reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
     $end            reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
     RBRACE          reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
+    RBRACKET        reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
+    COMMA           reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
+    QUESTION        reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
+    RPAREN          reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
+    COLON           reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
     DPROD           reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
     DIVMUL          reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
     PLUSMINUS       reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
-    QUESTION        reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
-    RBRACKET        reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
-    COMMA           reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
-    RPAREN          reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
-    COLON           reduce using rule 28 (list -> LBRACKET comms RBRACKET .)
 
 
 state 92
 
-    (10) module -> MODULE WORD COLON dblock .
+    (32) comms -> comms COMMA . expr
+    (34) expr -> . exprnoalg
+    (35) expr -> . alg0
+    (36) expr -> . print
+    (37) expr -> . variables
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
+    (9) print -> . PRINT expr
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
+    (33) equal -> . WORD EQUALS expr
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
+    (18) func -> . WORD LPAREN args RPAREN
+    (3) block -> . LBRACE inblock RBRACE
+    (28) list -> . LBRACKET comms RBRACKET
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
 
-    RBRACE          reduce using rule 10 (module -> MODULE WORD COLON dblock .)
-    DIVIDER         reduce using rule 10 (module -> MODULE WORD COLON dblock .)
-    $end            reduce using rule 10 (module -> MODULE WORD COLON dblock .)
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    WORD            shift and go to state 52
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
+    term                           shift and go to state 1
+    alg0                           shift and go to state 4
+    import                         shift and go to state 40
+    equal                          shift and go to state 35
+    block                          shift and go to state 6
+    variables                      shift and go to state 39
+    func                           shift and go to state 26
+    return                         shift and go to state 18
+    expr                           shift and go to state 100
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
+    var                            shift and go to state 48
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
+    print                          shift and go to state 25
+    alg2                           shift and go to state 31
+    float                          shift and go to state 27
+    int                            shift and go to state 29
 
 state 93
+
+    (11) deffunc -> DEFFUNC func COLON . dblock
+    (1) dblock -> . block
+    (2) dblock -> . divider block
+    (3) block -> . LBRACE inblock RBRACE
+    (16) divider -> . DIVIDER
+
+    LBRACE          shift and go to state 20
+    DIVIDER         shift and go to state 44
+
+    divider                        shift and go to state 98
+    dblock                         shift and go to state 101
+    block                          shift and go to state 97
+
+state 94
+
+    (15) if -> IF expr QUESTION . expr COLON expr
+    (34) expr -> . exprnoalg
+    (35) expr -> . alg0
+    (36) expr -> . print
+    (37) expr -> . variables
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
+    (9) print -> . PRINT expr
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
+    (33) equal -> . WORD EQUALS expr
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
+    (18) func -> . WORD LPAREN args RPAREN
+    (3) block -> . LBRACE inblock RBRACE
+    (28) list -> . LBRACKET comms RBRACKET
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
+
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    WORD            shift and go to state 52
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
+
+    term                           shift and go to state 1
+    alg2                           shift and go to state 31
+    alg0                           shift and go to state 4
+    equal                          shift and go to state 35
+    block                          shift and go to state 6
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    return                         shift and go to state 18
+    expr                           shift and go to state 102
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
+    var                            shift and go to state 48
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
+    print                          shift and go to state 25
+    func                           shift and go to state 26
+    float                          shift and go to state 27
+    int                            shift and go to state 29
+
+state 95
+
+    (18) func -> WORD LPAREN args RPAREN .
+
+    DIVIDER         reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
+    $end            reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
+    DPROD           reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
+    DIVMUL          reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
+    PLUSMINUS       reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
+    RBRACE          reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
+    RBRACKET        reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
+    COMMA           reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
+    QUESTION        reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
+    RPAREN          reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
+    COLON           reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
+
+
+state 96
+
+    (12) application -> APPLICATION WORD COLON dblock .
+
+    RBRACE          reduce using rule 12 (application -> APPLICATION WORD COLON dblock .)
+    DIVIDER         reduce using rule 12 (application -> APPLICATION WORD COLON dblock .)
+    $end            reduce using rule 12 (application -> APPLICATION WORD COLON dblock .)
+
+
+state 97
 
     (1) dblock -> block .
 
@@ -2631,40 +2754,34 @@ state 93
     RBRACE          reduce using rule 1 (dblock -> block .)
 
 
-state 94
+state 98
 
     (2) dblock -> divider . block
     (3) block -> . LBRACE inblock RBRACE
 
-    LBRACE          shift and go to state 6
+    LBRACE          shift and go to state 20
 
-    block                          shift and go to state 100
+    block                          shift and go to state 103
 
-state 95
+state 99
 
-    (15) if -> IF expr QUESTION expr . COLON expr
+    (10) module -> MODULE WORD COLON dblock .
 
-    COLON           shift and go to state 101
-
-
-state 96
-
-    (18) func -> WORD LPAREN args RPAREN .
-
-    DPROD           reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
-    DIVMUL          reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
-    PLUSMINUS       reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
-    DIVIDER         reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
-    $end            reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
-    RBRACE          reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
-    QUESTION        reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
-    RBRACKET        reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
-    COMMA           reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
-    RPAREN          reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
-    COLON           reduce using rule 18 (func -> WORD LPAREN args RPAREN .)
+    DIVIDER         reduce using rule 10 (module -> MODULE WORD COLON dblock .)
+    $end            reduce using rule 10 (module -> MODULE WORD COLON dblock .)
+    RBRACE          reduce using rule 10 (module -> MODULE WORD COLON dblock .)
 
 
-state 97
+state 100
+
+    (32) comms -> comms COMMA expr .
+
+    COMMA           reduce using rule 32 (comms -> comms COMMA expr .)
+    RPAREN          reduce using rule 32 (comms -> comms COMMA expr .)
+    RBRACKET        reduce using rule 32 (comms -> comms COMMA expr .)
+
+
+state 101
 
     (11) deffunc -> DEFFUNC func COLON dblock .
 
@@ -2673,25 +2790,14 @@ state 97
     RBRACE          reduce using rule 11 (deffunc -> DEFFUNC func COLON dblock .)
 
 
-state 98
+state 102
 
-    (12) application -> APPLICATION WORD COLON dblock .
+    (15) if -> IF expr QUESTION expr . COLON expr
 
-    DIVIDER         reduce using rule 12 (application -> APPLICATION WORD COLON dblock .)
-    $end            reduce using rule 12 (application -> APPLICATION WORD COLON dblock .)
-    RBRACE          reduce using rule 12 (application -> APPLICATION WORD COLON dblock .)
+    COLON           shift and go to state 104
 
 
-state 99
-
-    (32) comms -> comms COMMA expr .
-
-    RBRACKET        reduce using rule 32 (comms -> comms COMMA expr .)
-    COMMA           reduce using rule 32 (comms -> comms COMMA expr .)
-    RPAREN          reduce using rule 32 (comms -> comms COMMA expr .)
-
-
-state 100
+state 103
 
     (2) dblock -> divider block .
 
@@ -2700,78 +2806,82 @@ state 100
     RBRACE          reduce using rule 2 (dblock -> divider block .)
 
 
-state 101
+state 104
 
     (15) if -> IF expr QUESTION expr COLON . expr
     (34) expr -> . exprnoalg
     (35) expr -> . alg0
     (36) expr -> . print
     (37) expr -> . variables
-    (38) expr -> . import
-    (39) expr -> . equal
-    (40) expr -> . return
-    (41) exprnoalg -> . term
-    (42) exprnoalg -> . func
-    (43) exprnoalg -> . block
-    (44) exprnoalg -> . list
-    (57) alg0 -> . alg1
-    (58) alg0 -> . alg0 PLUSMINUS alg1
-    (59) alg0 -> . PLUSMINUS alg1
+    (38) expr -> . python
+    (39) expr -> . import
+    (40) expr -> . equal
+    (41) expr -> . return
+    (42) exprnoalg -> . term
+    (43) exprnoalg -> . func
+    (44) exprnoalg -> . block
+    (45) exprnoalg -> . list
+    (59) alg0 -> . alg1
+    (60) alg0 -> . alg0 PLUSMINUS alg1
+    (61) alg0 -> . PLUSMINUS alg1
     (9) print -> . PRINT expr
-    (56) variables -> . VARIABLES expr
-    (51) import -> . IMPORT str
+    (58) variables -> . VARIABLES expr
+    (52) python -> . PYTHON str
+    (53) import -> . IMPORT str
     (33) equal -> . WORD EQUALS expr
-    (45) return -> . RETURN expr
-    (46) term -> . str
-    (47) term -> . float
-    (48) term -> . int
-    (49) term -> . var
+    (46) return -> . RETURN expr
+    (47) term -> . str
+    (48) term -> . float
+    (49) term -> . int
+    (50) term -> . var
     (18) func -> . WORD LPAREN args RPAREN
     (3) block -> . LBRACE inblock RBRACE
     (28) list -> . LBRACKET comms RBRACKET
-    (60) alg1 -> . alg2
-    (61) alg1 -> . alg1 DIVMUL alg2
-    (54) str -> . STRING
-    (53) float -> . FLOAT
-    (50) int -> . NUMBER
-    (55) var -> . WORD
-    (62) alg2 -> . alg3
-    (63) alg2 -> . alg2 DPROD alg3
-    (64) alg3 -> . exprnoalg
+    (62) alg1 -> . alg2
+    (63) alg1 -> . alg1 DIVMUL alg2
+    (56) str -> . STRING
+    (55) float -> . FLOAT
+    (51) int -> . NUMBER
+    (57) var -> . WORD
+    (64) alg2 -> . alg3
+    (65) alg2 -> . alg2 DPROD alg3
+    (66) alg3 -> . exprnoalg
 
-    PLUSMINUS       shift and go to state 46
-    PRINT           shift and go to state 24
-    VARIABLES       shift and go to state 47
-    IMPORT          shift and go to state 4
-    WORD            shift and go to state 56
-    RETURN          shift and go to state 33
-    LBRACE          shift and go to state 6
-    LBRACKET        shift and go to state 44
-    STRING          shift and go to state 16
-    FLOAT           shift and go to state 1
-    NUMBER          shift and go to state 21
+    PLUSMINUS       shift and go to state 14
+    PRINT           shift and go to state 5
+    VARIABLES       shift and go to state 33
+    PYTHON          shift and go to state 12
+    IMPORT          shift and go to state 24
+    WORD            shift and go to state 52
+    RETURN          shift and go to state 37
+    LBRACE          shift and go to state 20
+    LBRACKET        shift and go to state 34
+    STRING          shift and go to state 42
+    FLOAT           shift and go to state 51
+    NUMBER          shift and go to state 30
 
-    alg2                           shift and go to state 27
-    float                          shift and go to state 28
-    block                          shift and go to state 30
-    alg0                           shift and go to state 3
-    expr                           shift and go to state 102
-    import                         shift and go to state 8
-    list                           shift and go to state 38
-    term                           shift and go to state 10
-    str                            shift and go to state 11
-    alg1                           shift and go to state 41
-    exprnoalg                      shift and go to state 13
+    term                           shift and go to state 1
+    alg2                           shift and go to state 31
+    alg0                           shift and go to state 4
+    equal                          shift and go to state 35
+    block                          shift and go to state 6
+    variables                      shift and go to state 39
+    import                         shift and go to state 40
+    return                         shift and go to state 18
+    expr                           shift and go to state 105
+    list                           shift and go to state 45
+    str                            shift and go to state 46
+    python                         shift and go to state 47
+    alg3                           shift and go to state 21
     var                            shift and go to state 48
-    int                            shift and go to state 15
-    equal                          shift and go to state 43
-    func                           shift and go to state 20
-    variables                      shift and go to state 32
-    return                         shift and go to state 22
+    exprnoalg                      shift and go to state 49
+    alg1                           shift and go to state 23
     print                          shift and go to state 25
-    alg3                           shift and go to state 26
+    func                           shift and go to state 26
+    float                          shift and go to state 27
+    int                            shift and go to state 29
 
-state 102
+state 105
 
     (15) if -> IF expr QUESTION expr COLON expr .
 
@@ -2783,8 +2893,8 @@ WARNING:
 WARNING: Conflicts:
 WARNING: 
 WARNING: shift/reduce conflict for DIVIDER in state 0 resolved as shift
-WARNING: shift/reduce conflict for DIVIDER in state 6 resolved as shift
-WARNING: shift/reduce conflict for DIVIDER in state 12 resolved as shift
-WARNING: shift/reduce conflict for DIVIDER in state 55 resolved as shift
-WARNING: reduce/reduce conflict in state 13 resolved using rule (expr -> exprnoalg)
-WARNING: rejected rule (alg3 -> exprnoalg) in state 13
+WARNING: shift/reduce conflict for DIVIDER in state 13 resolved as shift
+WARNING: shift/reduce conflict for DIVIDER in state 20 resolved as shift
+WARNING: shift/reduce conflict for DIVIDER in state 62 resolved as shift
+WARNING: reduce/reduce conflict in state 49 resolved using rule (expr -> exprnoalg)
+WARNING: rejected rule (alg3 -> exprnoalg) in state 49

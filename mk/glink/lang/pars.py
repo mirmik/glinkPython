@@ -145,6 +145,7 @@ def p_expr(p):
             | alg0
             | print
             | variables
+            | python
             | import
             | equal
             | return"""
@@ -172,6 +173,10 @@ def p_term(p):
 def p_int(p):
     """int : NUMBER"""
     p[0] = Node("int", [p[1]])
+
+def p_python(p):
+    """python : PYTHON str"""
+    p[0] = Node("python", [p[2]])
 
 def p_import(p):
     """import : IMPORT str"""

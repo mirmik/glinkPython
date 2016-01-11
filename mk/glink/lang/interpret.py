@@ -3,6 +3,7 @@
 
 from glink.lang.pars import parse_file as parse_file 
 
+
 class context:
 	def __init__(self):
 		self.variables = []
@@ -63,6 +64,7 @@ def moduleblock(name, blk):
 	modules.append([name,[]]); 
 	pass
 
+
 @see
 def execblock(blk):
 	contextlevels.append(context())
@@ -75,7 +77,16 @@ def execblock(blk):
 				return ret[1]
 		except: pass 
 	return ['namespace', contextlevels.pop(-1)]
-		
+
+_glb = None
+
+def extern_execblock(blk, glb):
+	global _glb 
+	_glb = glb
+	return execblock(blk)
+
+def python_import_impl(str):
+	return _glb[str]	
 
 @see
 def evaluate(expr):	
@@ -89,6 +100,7 @@ def evaluate(expr):
 	if expr.type == 'var': return get_var(expr.parts[0]) 
 	if expr.type == 'module': moduleblock(expr.parts[0], expr.parts[1]); return 0 
 	if expr.type == 'inblock': return execblock(expr) 
+	if expr.type == 'python': return python_import_impl(evaluate(expr.parts[0])) 
 	if expr.type == 'downlevel': return downlevel(evaluate(expr.parts[0])) 
 	if expr.type == 'variables': return contextlevels[evaluate(expr.parts[0])].variables
 	if expr.type == 'import': 
