@@ -1,0 +1,8 @@
+
+
+
+def pr(str):
+	print(str)
+
+
+print("fdfsaf")

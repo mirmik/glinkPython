@@ -1,0 +1,46 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+import sys
+import os
+
+sys.path.append('./mk/confmnpl')
+import impl
+
+funclist = 				{
+"name" 		: impl.name,
+"setname" 	: impl.setname,
+"saveto" 	: impl.saveto,
+"savechange" : impl.savechange,
+"copy" 		: impl.copy,
+"load" 		: impl.load,
+"template" 	: impl.superload,
+"newtemplate" 	: impl.supersave,
+"remove" 	: impl.remove,
+"ls" 		: impl.ls,
+"templatels" 		: impl.templatels,
+"lsreserve" 		: impl.lsreserve,
+}
+
+if len(sys.argv) == 1:
+	print (impl.title("Configuration manipulator utility."))
+	print("example format: " + impl.good("./confmnpl.py [command] [param ...]"))
+	print("command list:")
+	print(impl.decl("name:") + " name of current config")
+	print(impl.decl("setname @name:") + " change current config name. @name - new name")
+	print(impl.decl("copyto @name:") + " save current config with new name. @name - new name")
+	print(impl.decl("savechange:") + " save current config with current name.")
+	print(impl.decl("saveto:") + " save current config with new name.")
+	print(impl.decl("load @name:") + " load config. @name - name of loaded config")
+	print(impl.decl("template @name:") + " load config from template dir. @name - name of loaded config")
+	print(impl.decl("ls:") + " list of saved config")
+	print(impl.decl("templatels:") + " list of templates config")
+	exit()
+else:
+	command = sys.argv[1]
+	variables = sys.argv[2:]  
+	funclist[command](variables)
+	exit()
+
+
+
