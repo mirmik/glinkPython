@@ -36,9 +36,15 @@ tokens = (
     'APPLICATION',
     'VARIABLES',
     'PYTHON',
-    'IMPORT',
+    'EXECFILE',
+    'EXECTEXT',
     'INPUT',
     'RETURN',
+    'FOR',
+    'WHILE',
+    'BREAK',
+    'LOOP',
+    'IN',
     'PRINT',
 )
 
@@ -107,9 +113,15 @@ def t_WORD(t):
     if t.value == 'variables': t.type = "VARIABLES"
     if t.value == 'input': t.type = "INPUT"
     if t.value == 'downlevel': t.type = "DOWNLEVEL"
-    if t.value == 'import': t.type = "IMPORT"
+    if t.value == 'execfile': t.type = "EXECFILE"
+    if t.value == 'exectext': t.type = "EXECTEXT"
     if t.value == 'python': t.type = "PYTHON"
+    if t.value == 'for': t.type = "FOR"
+    if t.value == 'in': t.type = "IN"
     if t.value == 'if': t.type = "IF"
+    if t.value == 'while': t.type = "WHILE"
+    if t.value == 'break': t.type = "BREAK"
+    if t.value == 'loop': t.type = "LOOP"
     return t
 
 def t_POINT(t):
@@ -134,7 +146,7 @@ def t_NUMBER(t):
     return t
 
 def t_STRING(t):
-    r'(\"([^\"]*)\")'
+    r'(\"([^\"]*)\"|\'([^\']*)\')'
     t.value = str(t.value[1:-1].encode().decode("unicode_escape"))
     return t
 

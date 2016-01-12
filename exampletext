@@ -1,8 +1,26 @@
 
-g = 8
 
-downlevel import "./ex"
 
-a = python "a"
+   
 
-print a
+define l "Hello World"
+
+
+
+
+deffunc split(str):
+{
+    
+
+   define a 10
+
+   while a {
+        a = a - 1
+                   
+   }
+
+}
+
+
+   split("hello world") 
+

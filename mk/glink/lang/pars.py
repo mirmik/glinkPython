@@ -109,17 +109,35 @@ def p_metaexpr(p):
                 | define
                 | downlevel
                 | if
+                | while
+                | loop
                 | input"""
     p[0] = p[1]
 
 
 def p_list(p):
-    """list : LBRACKET comms RBRACKET"""
-    #if len(p) == 2:
-    #    p[0] = change_type(p[1], "list")
-    #else:
-    p[0] = change_type(p[2], "list")
+    """list : LBRACKET comms RBRACKET
+            | LBRACKET RBRACKET"""
+    if len(p) == 3:
+        p[0] = Node("list", [])
+    else:
+        p[0] = change_type(p[2], "list")
+  
+#def p_for(p):
+#    """for : FOR var IN expr COLON expr"""
+#    p[0] = Node("pfor", [p[2],p[4],p[6]])
     
+def p_while(p):
+    """while : WHILE expr COLON expr"""
+    p[0] = Node("while", [p[2],p[4]])
+
+def p_loop(p):
+    """loop : LOOP COLON expr"""
+    p[0] = Node("loop", [p[3]])
+
+def p_break(p):
+    """break : BREAK"""
+    p[0] = Node("break", [])
 
 def p_args(p):
     """args : 
@@ -137,7 +155,7 @@ def p_comms(p):
 
 def p_equal(p):
     """equal : WORD EQUALS expr"""
-    p[0] = Node("define", [p[1], p[3]])
+    p[0] = Node("equal", [p[1], p[3]])
 
 
 def p_expr(p):
@@ -146,8 +164,11 @@ def p_expr(p):
             | print
             | variables
             | python
-            | import
+            | execfile
+            | break
+            | exectext
             | equal
+            | element
             | return"""
     p[0] = p[1]
 
@@ -178,9 +199,13 @@ def p_python(p):
     """python : PYTHON str"""
     p[0] = Node("python", [p[2]])
 
-def p_import(p):
-    """import : IMPORT str"""
-    p[0] = Node("import", [p[2]])
+def p_execfile(p):
+    """execfile : EXECFILE str"""
+    p[0] = Node("execfile", [p[2]])
+
+def p_exectext(p):
+    """exectext : EXECTEXT str"""
+    p[0] = Node("exectext", [p[2]])
 
 def p_downlevel(p):
     """downlevel : DOWNLEVEL expr"""
@@ -193,6 +218,10 @@ def p_float(p):
 def p_str(p):
     """str : STRING"""
     p[0] = Node("str", [p[1]])
+
+def p_element(p):
+    """element : expr LBRACKET expr RBRACKET"""
+    p[0] = Node("element", [p[1], p[3]])
 
 def p_var(p):
     """var : WORD"""
@@ -246,4 +275,8 @@ parser = yacc.yacc()
 def parse_file(file):
     lexer.lexed_file = file
     ret = parser.parse(file.read())
+    return ret 
+
+def parse_text(text):
+    ret = parser.parse(text)
     return ret 
