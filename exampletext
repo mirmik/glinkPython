@@ -1,26 +1,17 @@
 
 
 
-   
-
-define l "Hello World"
 
 
 
 
-deffunc split(str):
-{
-    
 
-   define a 10
+module {	
+	files = @: /src/main.c /src/
 
-   while a {
-        a = a - 1
-                   
-   }
 
+
+
+
+	files = split(files)
 }
-
-
-   split("hello world") 
-

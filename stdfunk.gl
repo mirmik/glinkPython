@@ -1,0 +1,19 @@
+
+deffunc loop():
+{
+    yield
+    repeat
+}
+
+
+deffunc iteration(_iteration):
+{
+    if _iteration ? repeat : return 0
+    _iteration = _iteration - 1
+    yield
+}
+
+
+
+
+

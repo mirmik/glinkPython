@@ -40,10 +40,9 @@ tokens = (
     'EXECTEXT',
     'INPUT',
     'RETURN',
-    'FOR',
-    'WHILE',
+    'REPEAT',
     'BREAK',
-    'LOOP',
+    'YIELD',
     'IN',
     'PRINT',
 )
@@ -116,12 +115,14 @@ def t_WORD(t):
     if t.value == 'execfile': t.type = "EXECFILE"
     if t.value == 'exectext': t.type = "EXECTEXT"
     if t.value == 'python': t.type = "PYTHON"
-    if t.value == 'for': t.type = "FOR"
+   # if t.value == 'for': t.type = "FOR"
     if t.value == 'in': t.type = "IN"
     if t.value == 'if': t.type = "IF"
-    if t.value == 'while': t.type = "WHILE"
+    #if t.value == 'while': t.type = "WHILE"
     if t.value == 'break': t.type = "BREAK"
-    if t.value == 'loop': t.type = "LOOP"
+    if t.value == 'repeat': t.type = "REPEAT"
+    if t.value == 'yield': t.type = "YIELD"
+    #if t.value == 'loop': t.type = "LOOP"
     return t
 
 def t_POINT(t):

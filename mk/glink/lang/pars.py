@@ -96,8 +96,13 @@ def p_input(p):
     p[0] = Node("input", [])
 
 def p_func(p):
-    """func : WORD LPAREN args RPAREN"""
-    p[0] = Node("func", [p[1], p[3]])
+    """func : WORD LPAREN args RPAREN
+            | WORD LPAREN args RPAREN block
+            """
+    if len(p) == 5:
+        p[0] = Node("func", [p[1], p[3], 'noblock'])
+    else:
+        p[0] = Node("func", [p[1], p[3], p[5]])
 
 
 def p_metaexpr(p):
@@ -108,10 +113,7 @@ def p_metaexpr(p):
                 | declare
                 | define
                 | downlevel
-                | if
-                | while
-                | loop
-                | input"""
+                | if"""
     p[0] = p[1]
 
 
@@ -127,13 +129,13 @@ def p_list(p):
 #    """for : FOR var IN expr COLON expr"""
 #    p[0] = Node("pfor", [p[2],p[4],p[6]])
     
-def p_while(p):
-    """while : WHILE expr COLON expr"""
-    p[0] = Node("while", [p[2],p[4]])
+#def p_while(p):
+#    """while : WHILE expr COLON expr"""
+#    p[0] = Node("while", [p[2],p[4]])
 
-def p_loop(p):
-    """loop : LOOP COLON expr"""
-    p[0] = Node("loop", [p[3]])
+#def p_loop(p):
+#    """loop : LOOP COLON expr"""
+#    p[0] = Node("loop", [p[3]])
 
 def p_break(p):
     """break : BREAK"""
@@ -169,7 +171,10 @@ def p_expr(p):
             | exectext
             | equal
             | element
-            | return"""
+            | yield
+            | repeat
+            | return
+            | input"""
     p[0] = p[1]
 
 
@@ -215,9 +220,17 @@ def p_float(p):
     """float : FLOAT"""
     p[0] = Node("float", [p[1]])
 
+def p_yield(p):
+    """yield : YIELD"""
+    p[0] = Node("yield", [])
+
 def p_str(p):
     """str : STRING"""
     p[0] = Node("str", [p[1]])
+
+def p_repeat(p):
+    """repeat : REPEAT"""
+    p[0] = Node("repeat", [p[1]])
 
 def p_element(p):
     """element : expr LBRACKET expr RBRACKET"""

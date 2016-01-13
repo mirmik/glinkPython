@@ -1,5 +1,5 @@
 
-deffunc f(a):
+deffunc factorial(a):
 {
-   if a ? return a * f(a-1) : return 1
+   if a ? return a * factorial(a-1) : return 1
 }

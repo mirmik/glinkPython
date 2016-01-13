@@ -7,11 +7,11 @@ sys.path.append("./mk")
 a=28
 
 from glink.lang.pars import parse_file as parse_file 
-from glink.lang.interpret import extern_execblock as extern_execblock 
+from glink.lang.interpret import global_start 
 
 file = open("./exampletext")
 
 metablock = parse_file(file)
-extern_execblock(metablock, globals(), 0)
+global_start(metablock, globals(), 0)
 
 file.close()
